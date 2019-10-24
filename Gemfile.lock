@@ -53,6 +53,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
+    ast (2.4.0)
     autoprefixer-rails (9.6.5)
       execjs
     bindex (0.8.1)
@@ -102,6 +103,7 @@ GEM
       hpricot
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jquery-rails (4.3.5)
@@ -131,6 +133,9 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    parallel (1.18.0)
+    parser (2.6.5.0)
+      ast (~> 2.4.0)
     popper_js (1.14.5)
     public_suffix (4.0.1)
     puma (3.12.1)
@@ -161,6 +166,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (13.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -183,6 +189,17 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    rubocop (0.75.1)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.3.2)
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
+    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
     sassc (2.2.1)
@@ -227,6 +244,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.6.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -263,6 +281,8 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rspec-rails
+  rubocop
+  rubocop-rails
   sassc-rails (>= 2.1.0)
   shoulda-matchers!
   slim-rails
