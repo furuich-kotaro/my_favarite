@@ -15,6 +15,13 @@ jobs:
           DB_PASSWORD: 'password'
 
       - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: my_favarite_test
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_USER: root
 
 
     working_directory: ~/favorite_place
