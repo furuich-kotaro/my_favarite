@@ -13,7 +13,7 @@ RSpec.describe "User", type: :system do
       fill_in 'exampleInputEmail1', with: 'example@abc.com'
       fill_in 'exampleInputPassword1', with: 'password'
       fill_in 'exampleInputPassword2', with: 'password'
-      click_button 'ユーザ登録'
+      click_button '登録'
 
       expect(page).to have_content 'アカウント登録が完了しました。'
   }.to change{ User.count }.by(1)
