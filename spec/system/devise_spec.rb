@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User", type: :system do
+RSpec.describe "Devise", type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -17,5 +17,16 @@ RSpec.describe "User", type: :system do
 
       expect(page).to have_content 'アカウント登録が完了しました。'
   }.to change{ User.count }.by(1)
+  end
+
+  scenario 'ログインができる' do
+    user = create(:user, image: nil)
+
+    visit new_user_session_path
+    fill_in 'exampleInputEmail1', with: user.email
+    fill_in 'exampleInputPassword1', with: user.password
+    click_button 'ログイン'
+
+    expect(page).to have_content 'ログインしました。'
   end
 end
