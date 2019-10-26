@@ -16,11 +16,10 @@
               .form-group
                 = f.label :email
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
-              form-group
+              .form-group
                 / 選択した画像が表示されるようにする
                 = f.label :image, value: 'プロフィール画像'
                 = f.file_field :image, autofocus: true, autocomplete: "image", class: "form-control-file", id: "exampleFormControlFile1"
-              br
               = f.submit "更新", class:  "btn btn-outline-primary"
               p 
                 = link_to "Back", :back
