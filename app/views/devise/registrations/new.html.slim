@@ -1,24 +1,38 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.card.col-8.mx-auto
+  .sign_up
+    .conteiner
+      .row
+        .col-6.mx-auto
+          = link_to "" do
+            .btn.btn-outline-primary.easy_login
+              i#easy_login 簡単ログイン
+          .form
+            h2
+              | ユーザ登録
+            = render "devise/shared/error_messages", resource: resource
+            = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              .form-group
+                = f.label :name
+                em 
+                  |  (10文字以内です！)
+                = f.password_field :name, autocomplete: "name", class: "form-control", id: "exampleInputPassword1", pleaceholder: ""
+              .form-group
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
+                .small.form-text.text-muted#emailHelp
+                  |
+                    登録されているメールアドレスは使えません
+              .form-group
+                = f.label :password
+                - if @minimum_password_length
+                  em
+                    | (
+                    = @minimum_password_length
+                    |  文字以上です！)
+                = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1"
+              .form-group
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1"
+              
+              = f.submit "Sign up", class:  "btn btn-outline-primary"
+              = render "devise/shared/links"
