@@ -26,6 +26,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-
+#　ignore images for rspec
 /public/system
 /spec/test_uploads
+
+# ignore Environment variable
+/.env

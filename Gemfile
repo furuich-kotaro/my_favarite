@@ -61,6 +61,7 @@ group :development do
   gem 'html2slim'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'dotenv-rails'
 end
 
 group :test do
