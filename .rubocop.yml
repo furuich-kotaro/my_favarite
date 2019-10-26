@@ -35,6 +35,10 @@ ClassAndModuleChildren:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-# 行の文字数を120時まで
+# 行の文字数を制限しない
 Metrics/LineLength:
-  Max: 120
+  Enabled: false
+
+#コードのソフトウェアサイズを無視
+Metrics/AbcSize:
+  Enabled: false
