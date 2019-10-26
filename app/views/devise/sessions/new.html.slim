@@ -3,9 +3,10 @@
     .conteiner
       .row
         .col-6.mx-auto
-          = link_to "" do
-            .btn.btn-outline-primary.easy_login
-              i#easy_login 簡単ログイン
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            = f.hidden_field :email,value:"test@gmail.com"
+            = f.hidden_field :password,value:"password"
+            = f.submit "簡単ログイン", class: 'btn btn-outline-danger'
           .form
             h2
               | ログイン
