@@ -16,7 +16,7 @@ default: &default
   username: root
   password: <%= ENV.fetch("DB_KEY") { "" } %>
   host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
-
+  
 development:
   <<: *default
   database: my_favarite_development

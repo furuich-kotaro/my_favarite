@@ -15,7 +15,7 @@
                 = f.label :name
                 em 
                   |  (10文字以内です！)
-                = f.password_field :name, autocomplete: "name", class: "form-control", id: "exampleInputPassword1", pleaceholder: ""
+                = f.text_field :name, autocomplete: "name", class: "form-control", id: "exampleInputName1"
               .form-group
                 = f.label :email
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
@@ -32,7 +32,7 @@
                 = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1"
               .form-group
                 = f.label :password_confirmation
-                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1"
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword2"
               
-              = f.submit "Sign up", class:  "btn btn-outline-primary"
+              = f.submit "ユーザ登録", class:  "btn btn-outline-primary"
               = render "devise/shared/links"
