@@ -1,27 +1,28 @@
 - if controller_name != 'sessions'
   = link_to new_session_path(resource_name) do
-    .btn.btn-outline-primary.devise_links
+    .btn.btn-outline-primary.devise_links.btn-block
       i ログイン
 - if devise_mapping.registerable? && controller_name != 'registrations'
   = link_to new_registration_path(resource_name) do
-    .btn.btn-outline-primary.devise_links
-      i ユーザ登録
+    .btn.btn-outline-primary.devise_links.btn-block
+      i アカウントをお持ちでない方
 - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
   = link_to new_password_path(resource_name) do
-    .btn.btn-outline-primary.devise_links.forget_password
+    .btn.btn-outline-primary.devise_links.forget_password.btn-block
       i パスワードをお忘れですか？
+    br
 - if devise_mapping.confirmable? && controller_name != 'confirmations'
   = link_to new_confirmation_path(resource_name) do
-    .btn.btn-outline-primary.devise_links
+    .btn.btn-outline-primary.devise_links.btn-block
       i 確認メールの再送信
 - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
   = link_to new_unlock_path(resource_name) do
-    .btn.btn-outline-primary.devise_links
+    .btn.btn-outline-primary.devise_links.btn-block
       i アカウント凍結解除メールの再送信
 - if devise_mapping.omniauthable?
   - resource_class.omniauth_providers.each do |provider|
     br
     = link_to omniauth_authorize_path(resource_name, provider) do
-      .btn.btn-outline-primary.devise_links
+      .btn.btn-outline-primary.devise_links.btn-block
         i #{OmniAuth::Utils.camelize(provider)}で登録
 

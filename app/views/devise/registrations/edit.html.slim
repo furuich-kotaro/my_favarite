@@ -1,8 +1,8 @@
-.card.col-10.mx-auto
+.card.col-11.mx-auto
   .sign_up
     .conteiner
       .row
-        .col-8.mx-auto
+        .col-10.mx-auto
           h2 
             | ユーザ情報
           .form
@@ -20,7 +20,7 @@
                 / 選択した画像が表示されるようにする
                 = f.label :image, value: 'プロフィール画像'
                 = f.file_field :image, autofocus: true, autocomplete: "image", class: "form-control-file", id: "exampleFormControlFile1"
-              = f.submit "更新", class:  "btn btn-outline-primary"
+              = f.submit "更新", class:  "btn btn-outline-primary btn-block"
               p 
                 = link_to "Back", :back
           = link_to 'パスワードを変更', "", class: 'btn btn-outline-primary'

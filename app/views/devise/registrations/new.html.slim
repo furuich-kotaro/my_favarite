@@ -1,12 +1,12 @@
-.card.col-8.mx-auto
+.card.col-11.mx-auto
   .sign_up
     .conteiner
       .row
-        .col-6.mx-auto
+        .col-10.mx-auto
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             = f.hidden_field :email,value:"test@gmail.com"
             = f.hidden_field :password,value:"password"
-            = f.submit "簡単ログイン", class: 'btn btn-outline-danger'
+            = f.submit "簡単ログイン", class: 'btn btn-outline-danger btn-block'
           .form
             h2
               | ユーザ登録
@@ -35,5 +35,5 @@
                 = f.label :password_confirmation
                 = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword2"
               
-              = f.submit "登録", class:  "btn btn-outline-primary"
+              = f.submit "登録", class:  "btn btn-outline-primary btn-block"
               = render "devise/shared/links"

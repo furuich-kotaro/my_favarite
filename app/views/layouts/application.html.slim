@@ -8,11 +8,13 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-  = render 'layouts/notifications'
+  = render 'layouts/devise_notices'
   nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
     = link_to "PleAPP", root_path, class: "navbar-brand" 
     ul.nav.justify-content-end
       - if signed_in?
+        li.nav-item
+          = link_to "投稿一覧", root_path, class: "nav-link active"
         li.nav-item
           = link_to "投稿", "", class: "nav-link active"
         li.nav-item
@@ -20,6 +22,8 @@ html
         li.nav-item
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active"
       - else
+        li.nav-item
+          = link_to "投稿一覧", root_path, class: "nav-link active"
         li.nav-item
           = link_to "ログイン", new_user_session_path, class: "nav-link active"
         li.nav-item
