@@ -62,6 +62,7 @@ group :development do
   gem 'html2slim'
   gem "pre-commit", require: false
   gem 'rubocop', require: false
+  gem 'mailcatcher', require: false
   gem 'rubocop-rails'
 end
 
