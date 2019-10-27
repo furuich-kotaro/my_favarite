@@ -9,4 +9,19 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
   = render 'layouts/notifications'
+  nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
+    = link_to "PleAPP", root_path, class: "navbar-brand" 
+    ul.nav.justify-content-end
+      - if signed_in?
+        li.nav-item
+          = link_to "投稿", "", class: "nav-link active"
+        li.nav-item
+          = link_to "マイページ", edit_user_registration_path, class: "nav-link active"
+        li.nav-item
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active"
+      - else
+        li.nav-item
+          = link_to "ログイン", new_user_session_path, class: "nav-link active"
+        li.nav-item
+          = link_to "新規登録", new_user_registration_path, class: "nav-link active"
   = yield
