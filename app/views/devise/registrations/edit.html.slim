@@ -20,7 +20,17 @@
                 / 選択した画像が表示されるようにする
                 = f.label :image, value: 'プロフィール画像'
                 = f.file_field :image, autofocus: true, autocomplete: "image", class: "form-control-file", id: "exampleFormControlFile1"
+              .form-group
+                = f.label :password
+                i
+                  | (パスワードを変更したくなければ空欄にしてください)
+                = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1", placeholder: "6文字上でお願いします！"
+              .form-group
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1", placeholder: "6文字上でお願いします！"
+              .form-group
+                = f.label :current_password
+                = f.password_field :current_password, autocomplete: "current-password", class: "form-control", id: "exampleInputPassword1", placeholder: "パスワードを変更しない場合は入力不要です"
               = f.submit "更新", class:  "btn btn-outline-primary btn-block"
               p 
                 = link_to "Back", :back
-          = link_to 'パスワードを変更', "", class: 'btn btn-outline-primary'

@@ -62,6 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # パスワードなしでユーザ情報を変更するために
   def update_resource(resource, params)
-    resource.update_without_password(params)
+    return super if params["password"]&.present?
+    resource.update_without_password(params.except("current_password"))
   end
 end
