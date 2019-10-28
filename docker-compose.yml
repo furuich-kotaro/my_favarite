@@ -4,7 +4,7 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      MYSQL_USER: root
     ports:
       - "3306:3306"
 
@@ -17,3 +17,9 @@ services:
       - "3000:3000"
     links:
       - db
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"

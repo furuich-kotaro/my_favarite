@@ -41,6 +41,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,15 +60,18 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
   gem 'html2slim'
+  gem "pre-commit", require: false
   gem 'rubocop', require: false
+  gem 'mailcatcher', require: false
   gem 'rubocop-rails'
-  gem 'dotenv-rails'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
+  gem 'capybara-email'
   gem 'launchy'
+  gem 'email_spec'
   gem 'webdrivers'
   gem 'shoulda-matchers',
     git: 'https://github.com/thoughtbot/shoulda-matchers.git',
