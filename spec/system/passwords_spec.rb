@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Passwords", type: :system do
-  let(:user_email) { 'test1@example.com' }
 
   describe 'パスワードをリセットして変更する' do
     before do
       driven_by(:rack_test)
-      create(:user)
+      user = create(:user)
 
       visit new_user_password_path
-      fill_in 'exampleInputEmail1', with: user_email
+      fill_in 'exampleInputEmail1', with: user.email
       click_button "パスワード再設定メールを送る"
     end
   
@@ -18,6 +17,7 @@ RSpec.describe "Passwords", type: :system do
     end
 
     it "登録されていないメールアドレスを入力するとエラーが出る" do
+      visit new_user_password_path
       fill_in 'exampleInputEmail1', with: "tes0t@example.com"
       click_button "パスワード再設定メールを送る"
 
