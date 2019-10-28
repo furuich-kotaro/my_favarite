@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Passwords", type: :system do
   let(:user_email) { 'test1@example.com' }
 
-  describe 'パスワードをリセットして変更する', do: true do
+  describe 'パスワードをリセットして変更する' do
     before do
       driven_by(:rack_test)
       create(:user)
