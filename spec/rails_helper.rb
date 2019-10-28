@@ -8,7 +8,11 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rspec'
+require 'capybara/email'
+require 'capybara/email/rspec'
 
+Capybara.server_port = 3001
+Capybara.app_host = 'http://localhost:3001'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -24,6 +28,12 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+
+  #タグの有無で実行するテストを決める
+  config.filter_run do: true
+  config.run_all_when_everything_filtered = true
 
   config.after(:all) do
     if Rails.env.test?

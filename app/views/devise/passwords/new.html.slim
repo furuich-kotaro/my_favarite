@@ -9,8 +9,8 @@
             = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
               = render "devise/shared/error_messages", resource: resource
               .form-group
-                            = f.label :email
-                            = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
               .actions
                 = f.submit "パスワード再設定メールを送る", class: "btn btn-outline-primary btn-block"
               br

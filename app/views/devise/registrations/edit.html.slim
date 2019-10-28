@@ -27,10 +27,10 @@
                 = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1", placeholder: "6文字上でお願いします！"
               .form-group
                 = f.label :password_confirmation
-                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword1", placeholder: "6文字上でお願いします！"
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "exampleInputPassword2", placeholder: "6文字上でお願いします！"
               .form-group
                 = f.label :current_password
-                = f.password_field :current_password, autocomplete: "current-password", class: "form-control", id: "exampleInputPassword1", placeholder: "パスワードを変更しない場合は入力不要です"
+                = f.password_field :current_password, autocomplete: "current-password", class: "form-control", id: "currentPassword", placeholder: "パスワードを変更しない場合は入力不要です"
               = f.submit "更新", class:  "btn btn-outline-primary btn-block"
               p 
                 = link_to "Back", :back
