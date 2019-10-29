@@ -6,6 +6,7 @@
           .form
             h2
               | ユーザ登録
+            = render 'shard/errors', resource: @post
             = form_for @post do |f|
               .form-group
                 = f.label :title
@@ -15,8 +16,6 @@
                 = f.text_field :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
               .form-group
                 = f.label :pictures
-                em 
-                  |  (複数投稿できます！)
                 = f.file_field :pictures, multiple: true, autofocus: true, autocomplete: "pictures", class: "form-control-file", id: "postsFile"
               = f.submit "投稿", class:  "btn btn-outline-primary btn-block"
 

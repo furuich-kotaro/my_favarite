@@ -13,6 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'bootstrap', '~> 4.3.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem "font-awesome-rails"
 gem 'font-awesome-sass'
 gem 'slim-rails'
