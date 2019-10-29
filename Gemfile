@@ -42,10 +42,12 @@ gem 'devise-i18n-views'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'dotenv-rails'
+gem 'pry-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem "rspec_junit_formatter"
