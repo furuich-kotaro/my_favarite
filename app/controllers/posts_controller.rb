@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      binding.pry
       flash[:notice] = '投稿に成功しました'
       redirect_to root_path
     else
