@@ -17,9 +17,12 @@
                 = f.label :email
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1"
               .form-group
-                / 選択した画像が表示されるようにする
                 = f.label :image, value: 'プロフィール画像'
-                = f.file_field :image, autofocus: true, autocomplete: "image", class: "form-control-file", id: "exampleFormControlFile1"
+                - if current_user.image.present?
+                  = image_tag(current_user.image.url, id: "img_prev")
+                - else
+                  = image_tag(current_user.image.url, id: "img_prev")
+                = f.file_field :image, autofocus: true, autocomplete: "image", class: "form-control-file", id: "exampleFormControlFile"
               .form-group
                 = f.label :password
                 i

@@ -1,0 +1,18 @@
+#img_prev {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-size:cover;
+  display: block;
+}
+
+.file_fields {
+  list-style: none;
+  .file_field_style{
+    display: inline-block;
+    display: flex;
+    .form-control-file {
+      width: 300px;
+    }
+  }
+}

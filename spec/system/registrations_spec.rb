@@ -30,7 +30,7 @@ RSpec.describe "Registrations", type: :system do
 
       fill_in 'exampleInputName1', with: 'aaaaaa'
       fill_in 'exampleInputEmail1', with: 'example@abc.com'
-      attach_file 'exampleFormControlFile1', "#{Rails.root}/app/assets/images/backgroud.jpg"
+      attach_file 'exampleFormControlFile', "#{Rails.root}/app/assets/images/backgroud.jpg"
       click_button '更新'
 
       expect(page).to have_content 'アカウント情報を変更しました。'
@@ -42,7 +42,7 @@ RSpec.describe "Registrations", type: :system do
 
       fill_in 'exampleInputName1', with: 'aaaaaa'
       fill_in 'exampleInputEmail1', with: 'example@abc.com'
-      attach_file 'exampleFormControlFile1', "#{Rails.root}/app/assets/images/backgroud.jpg"
+      attach_file 'exampleFormControlFile', "#{Rails.root}/app/assets/images/backgroud.jpg"
       fill_in 'exampleInputPassword1', with: 'password123'
       fill_in 'exampleInputPassword2', with: 'password123'
       fill_in 'currentPassword', with: 'password'
