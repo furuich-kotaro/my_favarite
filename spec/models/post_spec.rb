@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Post, type: :model,do: true  do
-  let(:user) { create(:user)}
+RSpec.describe Post, type: :model do
   let(:image_path) { Rails.root.join('spec/factories/test.jpg') }
   let(:image) { Rack::Test::UploadedFile.new(image_path) }
 
@@ -24,7 +23,7 @@ RSpec.describe Post, type: :model,do: true  do
     expect(post).to be_valid
   end
 
-  it "タイトル、画像(4数)でも有効" do
+  it "タイトル、画像(複数)でも有効" do
     post = create(:post, description: nil, pictures: [image, image, image, image])
     expect(post).to be_valid
   end
