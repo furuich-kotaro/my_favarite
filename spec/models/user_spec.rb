@@ -12,17 +12,6 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it "名前は10文字だと有効" do
-    user = create(:user, name: "a"*10)
-    expect(user).to be_valid
-  end
-
-  it "名前は11文字だと無効" do
-    user = build(:user, name: "a"*11)
-    user.valid?
-    expect(user.errors[:name]).to include("は10文字以内で入力してください")
-  end
-
   it "名前が空だと無効" do
     user = build(:user, name: nil)
     user.valid?
@@ -33,6 +22,17 @@ RSpec.describe User, type: :model do
     user = build(:user, email: nil)
     user.valid?
     expect(user.errors[:email]).to include("を入力してください")
+  end
+
+  it "名前は10文字だと有効" do
+    user = create(:user, name: "a"*10)
+    expect(user).to be_valid
+  end
+
+  it "名前は11文字だと無効" do
+    user = build(:user, name: "a"*11)
+    user.valid?
+    expect(user.errors[:name]).to include("は10文字以内で入力してください")
   end
 
   it "既存のメールアドレスは無効" do
