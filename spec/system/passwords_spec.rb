@@ -12,7 +12,7 @@ RSpec.describe "Passwords", type: :system do
       click_button "パスワード再設定メールを送る"
     end
   
-    it "パスワード再設定メールが送られる" do
+    it "正しいメールアドレスのときはパスワード再設定メールが送られる" do
       expect(page).to have_content("パスワードの再設定について数分以内にメールでご連絡いたします。")
     end
 
@@ -23,5 +23,7 @@ RSpec.describe "Passwords", type: :system do
 
       expect(page).to have_content("メールアドレスは見つかりませんでした。")
     end
+
+    it "再設定メールの内容のテストと変更のテストを追加する"
   end
 end
