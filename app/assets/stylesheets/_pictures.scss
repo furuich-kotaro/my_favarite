@@ -1,0 +1,14 @@
+.add-image {
+  margin-left: 15px;
+}
+
+.f-container {
+  padding-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .f-item {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+}

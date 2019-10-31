@@ -1,37 +1,48 @@
 $(document).on("turbolinks:load", function() {
-  $(".image-sortable").sortable({
-    axis: "y",
-    items: ".image"
-  });
+  var clickTimes = 0;
 
-  var cliclTimes = 0;
   $(".add-image").click(function() {
-    console.log(cliclTimes);
-    $(".file_fields").append(
-      `<li class="file_field${cliclTimes} file_field_style">
-        <input multiple="multiple" type="file" name="post[pictures][]" class=""form-control-file id="exampleFormControlFile">
-        <button type="button" class="remove-image btn btn-outline-danger">削除</button>
-      </li>`
-    );
+    clickTimes += 1;
+    var form = `<div class="f-item" id="item${clickTimes}">
+                  <input multiple="multiple" type="file" name="post[pictures][]" id="post_img${clickTimes}" class="form-control-file">
+                  <img class="prev">
+                  <button type="button" class="remove-image btn btn-outline-danger btn-block">
+                    削除
+                  </button>
+                </div>`;
+    $(".input-area").append(form);
   });
 
   $(document).on("click", ".remove-image", function() {
-    console.log(this);
     $(this)
       .parent()
       .remove();
   });
 
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $("#img_prev").attr("src", e.target.result);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-  $("#exampleFormControlFile1").change(function() {
-    readURL(this);
+  $(document).on("click", ".form-control-file", function() {
+    var inputId = $(this).attr("id");
+    var itemId = $(this)
+      .parent()
+      .attr("id");
+    console.log(itemId);
+
+    $(document).on("change", `#${inputId}`, function() {
+      function readURL(input) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $(`#${itemId}`)
+            .find("img")
+            .attr({
+              src: e.target.result
+            });
+          $(".prev").css({
+            width: "100%",
+            height: "250px"
+          });
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+      readURL(this);
+    });
   });
 });

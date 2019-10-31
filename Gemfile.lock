@@ -123,8 +123,6 @@ GEM
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
     ffi (1.11.1)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
     font-awesome-sass (5.11.2)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -368,7 +366,6 @@ DEPENDENCIES
   dotenv-rails
   email_spec
   factory_bot_rails
-  font-awesome-rails
   font-awesome-sass
   html2slim
   jbuilder (~> 2.5)
