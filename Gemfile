@@ -66,6 +66,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'mailcatcher', require: false
   gem 'rubocop-rails'
+  gem 'solargraph'
 end
 
 group :test do

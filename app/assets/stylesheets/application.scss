@@ -4,4 +4,9 @@
 @import './reset';
 @import './devise';
 @import './image';
-@import './pictures'
+@import './pictures';
+
+#map{
+height: 400px;
+width: 400px;
+}
