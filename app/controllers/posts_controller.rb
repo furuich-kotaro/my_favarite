@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destory]
 
-  def index; end
+  def index
+    @posts = Post.all
+  end
 
   def show; end
 
@@ -28,6 +30,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :description, pictures: []).merge(user_id: current_user.id)
+    params.require(:post).permit(:address, :description, :latitude, :longitude, pictures: []).merge(user_id: current_user.id)
   end
 end

@@ -8,16 +8,25 @@
           = render 'shard/errors', resource: @post
           = form_for @post do |f|
             .form-group
-              = f.label :title
-              = f.text_field :title, autocomplete: "title", class: "form-control", id: "postTitle"
+              = f.label :address, "お気に入りの場所(地名や住所)"
+              = f.text_field :address, autocomplete: "address", class: "form-control", id: "postAddress"
+              .form-grup.map-search
+                .label
+                  p 
+                    | 住所があっているか、存在しているか確認してください。
+                    br                    
+                    | 検索して一致しない場合は場所一覧に表示されません
+                .search-area
+                  input#address.form-control type="textbox" placeholder="地名や住所などで検索してください"
+                  button.btn.btn-outline-primary type="button" onclick="codeAddress()"
+                    |
+                      検索
+                #map style="width: 600px; height: 400px;"
             .form-group
-              = f.label :description
+              = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
               = f.text_field :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
             .form-group
-              h3 Google Map
-              #map
-            .form-group
-              = f.label :pictures
+              = f.label :pictures, "写真"
               button.add-image.btn.btn-outline-primary type="button"
                 |
                   追加
@@ -30,3 +39,34 @@
                       削除
             = f.submit "投稿", class:  "btn btn-outline-primary btn-block"
 
+javascript:
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    handler.getMap().setCenter(new google.maps.LatLng(35.681298, 139.7640582));
+    handler.getMap().setZoom(4);
+  });
+
+  function codeAddress() {
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8
+    });
+    // 入力を取得
+    let inputAddress = document.getElementById("address").value;
+
+    // geocodingしたあとmapを移動
+    geocoder.geocode({ address: inputAddress }, function(results, status) {
+      if (status == "OK") {
+        // map.setCenterで地図が移動
+        map.setCenter(results[0].geometry.location); // google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert("該当する場所がありません");
+      }
+    });
+  }

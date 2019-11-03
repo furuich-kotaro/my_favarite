@@ -14,7 +14,7 @@ RSpec.describe "Posts", type: :system do
       visit new_post_path
 
       expect {
-        fill_in 'postTitle', with: 'aaaaaa'
+        fill_in 'postAddress', with: 'aaaaaa'
         fill_in 'postDescription', with: 'this is a test'
         attach_file 'post_img', [ image, image, image ]
         click_button '投稿'

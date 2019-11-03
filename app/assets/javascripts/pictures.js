@@ -24,7 +24,6 @@ $(document).on("turbolinks:load", function() {
     var itemId = $(this)
       .parent()
       .attr("id");
-    console.log(itemId);
 
     $(document).on("change", `#${inputId}`, function() {
       function readURL(input) {

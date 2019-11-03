@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+        post: 投稿
+    attributes:
+      post:
+        address: お気に入りの場所
+        description: お気に入りポイント
+        pictures: 写真

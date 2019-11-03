@@ -7,26 +7,9 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    script [async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWloW0ukIwa0khR0ZngYjx0tc3MZdcQzI&callback=initMap"]
+    script [src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWloW0ukIwa0khR0ZngYjx0tc3MZdcQzI" async defer]
+    script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
   body
   = render 'layouts/devise_notices'
-  nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
-    = link_to "PleAPP", root_path, class: "navbar-brand" 
-    ul.nav.justify-content-end
-      - if signed_in?
-        li.nav-item
-          = link_to "投稿一覧", root_path, class: "nav-link active"
-        li.nav-item
-          = link_to "投稿", new_post_path, class: "nav-link active"
-        li.nav-item
-          = link_to "マイページ", edit_user_registration_path, class: "nav-link active"
-        li.nav-item
-          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active"
-      - else
-        li.nav-item
-          = link_to "投稿一覧", root_path, class: "nav-link active"
-        li.nav-item
-          = link_to "ログイン", new_user_session_path, class: "nav-link active"
-        li.nav-item
-          = link_to "新規登録", new_user_registration_path, class: "nav-link active"
+  = render 'layouts/header'
   = yield

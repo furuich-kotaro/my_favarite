@@ -1,8 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
   mount_uploaders :pictures, PictureUploader
+  geocoded_by :address
+  after_validation :geocode
 
-  validates :title, presence: true, length: { maximum: 30 }
-  validates :description, length: { maximum: 150 }
+  validates :address, presence: true
+  validates :description, length: { maximum: 50 }
   validates :pictures, presence: true
 end

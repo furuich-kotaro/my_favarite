@@ -1,5 +1,7 @@
 .add-image {
-  margin-left: 15px;
+  margin-left: 10px;
+  height: calc(1.5em + 0.6rem);
+  padding: -3px 0 -3px 0;
 }
 
 .f-container {
@@ -11,4 +13,25 @@
     width: 48%;
     margin-bottom: 10px;
   }
+}
+
+.map-search {
+  .label {
+    margin: 10px 0 -10px 0;
+  }
+  .search-area {
+    height: calc(1.5em + 0.75rem + 2px);
+    display: flex;
+    margin-bottom: 15px;
+    p {
+      border: solid 1px black;
+    }
+    #address {
+      width: calc(100% - 200px);
+    }
+  }
+}
+#map{
+  height: 400px;
+  width: 100%;
 }
