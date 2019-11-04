@@ -1,0 +1,15 @@
+.conteiner.col-11.mx-auto
+  #alert-message
+  .row.posts
+    - @posts.each do |post|
+      .card.post id="post-#{post.id}"
+        = image_tag post.pictures[0].url, class: 'card-img-top'
+        span 
+          = post.user.name
+        .card-body
+          h6.card-title
+            = post.address
+          - if current_user
+            - if post.user.id == current_user.id
+              = link_to "詳細", "", class: "card-link"
+              = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link remove-card", data: {post: post.id}

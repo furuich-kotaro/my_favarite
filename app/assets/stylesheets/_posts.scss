@@ -1,0 +1,11 @@
+.posts {
+  display: flex;
+  .card {
+    width: 23%;
+    margin: 5px 5px 5px 5px;
+    .card-img-top {
+      height: 150px;
+      width: 100%;
+    }
+  }
+}

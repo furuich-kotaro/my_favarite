@@ -12,7 +12,7 @@ AllCops:
     - spec/**/*
     - lib/*
     - db/migrate/*
-    - db/schema.rb
+    - db/*
     - lib/tasks/*
     - public/*
     - tmp/*
