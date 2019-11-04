@@ -24,7 +24,7 @@ RSpec.describe "Posts", type: :system do
     end
   end
 
-  describe '削除', do: true do
+  describe '削除' do
     let(:user) { create(:user)}
     let(:other_user) { create(:user)}
     let(:post) { create(:post)}
