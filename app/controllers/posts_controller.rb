@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.page(params[:page]).per(3)
+    @like = Like.new
   end
 
   def new
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     flash[:notice] = '削除に成功しました'
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
