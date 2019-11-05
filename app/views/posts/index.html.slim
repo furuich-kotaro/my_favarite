@@ -33,6 +33,8 @@
             - if post.user.id == current_user.id
               = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link btn btn-sm btn-primary remove-card", data: {post: post.id}
 
+  = paginate @posts
+
 javascript:
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: "map"}}, function(){
