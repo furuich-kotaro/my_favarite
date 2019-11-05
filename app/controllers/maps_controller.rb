@@ -5,7 +5,7 @@ class MapsController < ApplicationController
       marker.lat post.latitude
       marker.lng post.longitude
       marker.infowindow post.address
-      marker.infowindow render_to_string(partial: 'maps/infowindow', locals: { post: post })
+      marker.infowindow render_to_string(partial: 'shard/infowindow', locals: { post: post })
     end
   end
 end

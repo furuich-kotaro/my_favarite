@@ -1,0 +1,43 @@
+button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#demoNormalModal#{post.id}"]
+  |  詳細 
+.modal.fade[tabindex="-1" id="demoNormalModal#{post.id}" role="dialog" aria-labelledby="modal" aria-hidden="true"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+        h5#demoModalTitle.modal-title
+          = post.address
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+      .modal-body
+        - if post.pictures.length >= 2
+          .carousel.slide[id="carouselExampleControls1#{post.id}" data-interval="false"]
+            .carousel-inner
+              - post.pictures.length.times do |i|
+                - if i == 0
+                  .carousel-item.active[data-interval="false"]
+                    = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
+                - else
+                  .carousel-item[data-interval="false"]
+                    = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
+            a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
+              span.carousel-control-prev-icon[aria-hidden="true"]
+              span.sr-only
+                | Previous
+            a.carousel-control-next[href="#carouselExampleControls1#{post.id}" role="button" data-slide="next"]
+              span.carousel-control-next-icon[aria-hidden="true"]
+              span.sr-only
+                | Next
+        - else
+          = image_tag post.pictures[0].url, class: 'card-img-top', style: "height: 400px;"
+        = link_to "googleマップで開く" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank"
+        - if post.description.present?
+          h5
+            |
+              お気に入りポイント
+          p
+            = post.description
+      .modal-footer
+        button.btn.btn-secondary[type="button" data-dismiss="modal"]
+          | 閉じる
+
