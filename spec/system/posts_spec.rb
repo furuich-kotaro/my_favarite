@@ -5,11 +5,11 @@ RSpec.describe "Posts", type: :system do
     driven_by(:rack_test)
   end
   
-  describe '新規投稿' do
+  describe 'new' do
     let(:user) { create(:user)}
     let(:image) { "#{Rails.root}/app/assets/images/backgroud.jpg" }
 
-    scenario '新規投稿' do
+    scenario 'new' do
       sign_in user
       visit new_post_path
 
@@ -24,7 +24,7 @@ RSpec.describe "Posts", type: :system do
     end
   end
 
-  describe '削除' do
+  describe 'destroy' do
     let(:user) { create(:user)}
     let(:other_user) { create(:user)}
     let(:post) { create(:post)}

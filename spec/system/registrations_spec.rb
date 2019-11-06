@@ -5,7 +5,7 @@ RSpec.describe "Registrations", type: :system do
     driven_by(:rack_test)
   end
 
-  describe 'ユーザを新規登録する' do
+  describe 'new' do
     scenario 'ユーザ登録' do
       visit new_user_registration_path
   
@@ -21,7 +21,7 @@ RSpec.describe "Registrations", type: :system do
     end
   end
   
-  describe 'ユーザ情報を変更' do
+  describe 'edit' do
     let(:user) { create(:user)}
   
     scenario '名前、メールアドレス、プロフィール画像のみ変更' do 

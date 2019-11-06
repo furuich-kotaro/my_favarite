@@ -35,7 +35,6 @@
             = render 'likes/like', { post: post}
           - else
             span.like
-              a href=""
-                i.fas.fa-heart
               = post.likes.count
+              span good
   = paginate @posts

@@ -10,6 +10,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 10 }
 
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 end

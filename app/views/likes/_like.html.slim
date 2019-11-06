@@ -1,10 +1,8 @@
 - if current_user.already_liked?(post)
   span.like
-    = link_to post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self do
-      i.fas.fa-heart
     = post.likes.count
+    = link_to "good", post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self
 - else
   span.like
-    = link_to post_likes_path(post), method: :post, target: :_self do
-      i.far.fa-heart
     = post.likes.count
+    = link_to "good",  post_likes_path(post), method: :post, target: :_self
