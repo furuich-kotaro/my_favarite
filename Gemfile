@@ -48,6 +48,7 @@ gem "gmaps4rails"
 gem "geocoder"
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,6 +57,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem "rspec_junit_formatter"
+  gem 'bullet'
 end
 
 group :development do

@@ -42,3 +42,7 @@ Metrics/LineLength:
 #コードのソフトウェアサイズを無視
 Metrics/AbcSize:
   Enabled: false
+
+#ブロック内の行数は50まで
+Metrics/BlockLength:
+  Max: 40

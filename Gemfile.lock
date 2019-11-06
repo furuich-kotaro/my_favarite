@@ -68,6 +68,9 @@ GEM
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.2.3)
+    bullet (6.0.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.0.1)
     capybara (3.29.0)
       addressable
@@ -206,6 +209,8 @@ GEM
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pluginator (1.5.0)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     popper_js (1.14.5)
     pre-commit (0.39.0)
       pluginator (~> 1.5)
@@ -253,6 +258,12 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.0)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -366,6 +377,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
+    uniform_notifier (1.13.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -391,6 +403,7 @@ DEPENDENCIES
   acts-as-taggable-on
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
+  bullet
   byebug
   capybara
   capybara-email
@@ -421,6 +434,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   rails-i18n
+  ransack
   rspec-rails
   rspec_junit_formatter
   rubocop

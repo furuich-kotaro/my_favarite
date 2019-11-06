@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
-    @posts = Post.all.page(params[:page]).per(3)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).per(30).order('created_at DESC')
     @like = Like.new
   end
 
@@ -27,9 +28,19 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def search
+    @q = Post.search(search_params)
+    @posts = @q.result(distinct: true).page(params[:page]).per(30).order('created_at DESC')
+    @like = Like.new
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:address, :description, :tag_list, :latitude, :longitude, pictures: []).merge(user_id: current_user.id)
+  end
+
+  def search_params
+    params.require(:q).permit(:address_cont)
   end
 end

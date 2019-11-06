@@ -1,0 +1,37 @@
+- posts.each do |post|
+  .card.post id="post-#{post.id}"
+    - if post.pictures.length >= 2
+      .carousel.slide[id="carouselExampleControls#{post.id}" data-interval="false"]
+        .carousel-inner
+          - post.pictures.length.times do |i|
+            - if i == 0
+              .carousel-item.active[data-interval="false"]
+                = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top"
+            - else
+              .carousel-item[data-interval="false"]
+                = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top"
+        a.carousel-control-prev[href="#carouselExampleControls#{post.id}" role="button" data-slide="prev"]
+          span.carousel-control-prev-icon[aria-hidden="true"]
+          span.sr-only
+            | Previous
+        a.carousel-control-next[href="#carouselExampleControls#{post.id}" role="button" data-slide="next"]
+          span.carousel-control-next-icon[aria-hidden="true"]
+          span.sr-only
+            | Next
+    - else
+      = image_tag post.pictures[0].url, class: 'card-img-top'
+    span
+      = post.user.name
+    .card-body
+      h6.card-title
+        = post.address
+      = render 'modal', {post: post}
+      - if user_signed_in? && ( post.user.id == current_user.id )
+        = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+      - if user_signed_in? && ( post.user.id != current_user.id )
+        = render 'likes/like', { post: post}
+      - else
+        span.like
+          = post.likes.count
+          span good
+
