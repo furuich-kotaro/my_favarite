@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   mount_uploaders :pictures, PictureUploader
   geocoded_by :address
   after_validation :geocode
+  acts_as_taggable
 
   validates :address, presence: true
   validates :description, length: { maximum: 50 }

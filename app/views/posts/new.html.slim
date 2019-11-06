@@ -3,8 +3,7 @@
     .row
       .col-10.mx-auto
         .form
-          h2
-            | 投稿
+          h2 投稿
           = render 'shard/errors', resource: @post
           = form_for @post do |f|
             .form-group
@@ -19,24 +18,24 @@
                 .search-area
                   input#address.form-control type="textbox" placeholder="地名や住所などで検索してください"
                   button.btn.btn-outline-primary type="button" onclick="codeAddress()"
-                    |
-                      検索
+                    | 検索
                 #map style="width: 600px; height: 400px;"
             .form-group
               = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
               = f.text_field :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
             .form-group
+              = f.label :tag_list, "タグ(カンマ区切り))"
+              = text_field_tag 'post[tag_list]', @post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "入力しなくても投稿できます！  etc)海,離島"
+            .form-group
               = f.label :pictures, "写真"
               button.add-image.btn.btn-outline-primary type="button"
-                |
-                  追加
+                | 追加
               .input-area.f-container
                 .f-item#item
                   = f.file_field :pictures, multiple: true, class: "form-control-file", id: "post_img"
                   = image_tag("", class: "prev")
                   button.remove-image.btn.btn-outline-danger.btn-block type="button"
-                    |
-                      削除
+                    | 削除
             = f.submit "投稿", class:  "btn btn-outline-primary btn-block"
 
 javascript:

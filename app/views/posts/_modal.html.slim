@@ -37,9 +37,13 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
               お気に入りポイント
           p
             = post.description
-          span.like
-            = post.likes.count
-            span good
+        span.like
+          = post.likes.count
+          span good
+        br
+        - post.tag_list.each do |tag|
+          span.tag.badge.badge-info
+            = tag
       .modal-footer
         button.btn.btn-secondary[type="button" data-dismiss="modal"]
           | 閉じる
