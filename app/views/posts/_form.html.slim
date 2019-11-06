@@ -15,7 +15,7 @@
       #map style="width: 600px; height: 400px;"
   .form-group
     = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
-    = f.text_field :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
+    = f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
   .form-group
     = f.label :tag_list, "タグ(カンマ区切り))"
     = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "入力しなくても投稿できます！  etc)海,離島"
