@@ -37,6 +37,14 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
               お気に入りポイント
           p
             = post.description
+        - if user_signed_in? && ( post.user.id == current_user.id )
+          = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+        - if user_signed_in? && ( post.user.id != current_user.id )
+          = render 'likes/like', { post: post}
+        - else
+          span.like
+            = post.likes.count
+            span good
       .modal-footer
         button.btn.btn-secondary[type="button" data-dismiss="modal"]
           | 閉じる
