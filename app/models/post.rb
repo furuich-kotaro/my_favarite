@@ -14,4 +14,9 @@ class Post < ApplicationRecord
   def find_like(post, user)
     Like.find_by(post_id: post.id, user_id: user.id)
   end
+
+  ransacker :likes_count do
+    query = '(SELECT COUNT(likes.post_id) FROM likes where likes.post_id = posts.id GROUP BY likes.post_id)'
+    Arel.sql(query)
+  end
 end

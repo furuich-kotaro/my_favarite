@@ -18,3 +18,11 @@
     }
   }
 }
+
+.sorts{
+  display: flex;
+  justify-content: flex-end;
+  .sort-likes{
+    margin-left: 10px;
+  }
+}

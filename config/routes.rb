@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts, except: [:show, :edit, :update] do
     resources :likes, only: [:create, :destroy]
+    collection do
+      get 'search', to: 'posts#search'
+    end
   end
-  get 'search', to: 'posts#search'
   resources :maps, only: [:index]
 end

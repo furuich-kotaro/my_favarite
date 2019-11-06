@@ -11,7 +11,7 @@ html
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
   body
   = render 'layouts/devise_notices'
-  - if request.path == '/' || '/search/*other'
+  - if request.path == '/'
     = render 'layouts/search_header'
   - else
     = render 'layouts/header'

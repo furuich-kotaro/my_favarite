@@ -3,7 +3,7 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
   ul.nav.justify-content-end
     - if signed_in?
       li.nav-item
-        = search_form_for(@q, url:search_path) do |f|
+        = search_form_for(@q, url:search_posts_path) do |f|
           = f.label :address, 'キーワード'
           = f.search_field :address_cont
           = f.submit

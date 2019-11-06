@@ -39,7 +39,9 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
             = post.description
         span.like
           = post.likes.count
-          span good
+          span.like
+            |
+              いいね
         br
         - post.tag_list.each do |tag|
           span.tag.badge.badge-info

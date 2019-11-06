@@ -13,21 +13,21 @@ RSpec.describe "Likes", type: :system do
       post = create(:post, user: user)
       sign_in other_user
       visit root_path
-      expect(page).to have_link("good")
+      expect(page).to have_link("いいね")
       expect {
-        click_link 'good'
+        click_link 'いいね'
       }.to change{ post.likes.count }.by(1)
     end
 
     scenario '非ログインユーザ' do
       visit root_path
-      expect(page).not_to have_link("good")
+      expect(page).not_to have_link("いいね")
     end
 
     scenario '投稿者でログイン' do
       sign_in user
       visit root_path
-      expect(page).not_to have_link("good")
+      expect(page).not_to have_link("いいね")
     end
   end
 
@@ -36,13 +36,13 @@ RSpec.describe "Likes", type: :system do
       post = create(:post, user: user)
       sign_in other_user
       visit root_path
-      expect(page).to have_link("good")
+      expect(page).to have_link("いいね")
       expect {
-        click_link 'good'
+        click_link 'いいね'
       }.to change{ post.likes.count }.by(1)
 
       expect {
-        click_link 'good'
+        click_link 'いいね'
       }.to change{ post.likes.count }.by(-1)
     end
   end
