@@ -17,6 +17,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'postAddress', with: '東京'
         fill_in 'postDescription', with: 'this is a test'
         attach_file 'post_img', [ image, image, image ]
+        fill_in 'postTags', with: '東京,展望台'
         click_button '投稿'
 
         expect(page).to have_content '投稿に成功しました'
