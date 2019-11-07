@@ -71,7 +71,6 @@ RSpec.describe "Posts", type: :system do
       expect(page).to have_content '東京'
       expect(page).not_to have_content '河口湖'
 
-      visit root_path
       fill_in 'searchFiled', with: '河口湖'
       click_button '検索'
 

@@ -1,12 +1,13 @@
 nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
-  = link_to "PleAPP", root_path, class: "navbar-brand" 
-  ul.nav.justify-content-end
+  ul.nav.nav-tabs
     - if signed_in?
-      li.nav-item
-        = search_form_for(@q, url:search_posts_path) do |f|
-          = f.label :address, 'キーワード'
-          = f.search_field :address_cont, id: 'searchFiled'
-          = f.submit
+      li.nav-item.dropdow
+        a.nav-link.dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+          |
+            アカウント
+        .dropdown-menu
+          = link_to "マイページ", edit_user_registration_path, class: "dropdown-item"
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
       li.nav-item
         = link_to "場所一覧", maps_path, class: "nav-link active"
       li.nav-item
@@ -14,15 +15,10 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
       li.nav-item
         = link_to "投稿", new_post_path, class: "nav-link active"
       li.nav-item
-        = link_to "マイページ", edit_user_registration_path, class: "nav-link active"
-      li.nav-item
-        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active"
+        = search_form_for(@q, url:search_posts_path, class: "form-inline") do |f|
+          = f.search_field :address_cont, class: "form-control mr-sm-2", id: 'searchFiled', placeholder: "キーワード検索"
+          = f.submit class: "btn btn-outline-success my-2 my-sm-0"
     - else
-      li.nav-item
-        = search_form_for @q do |f|
-          = f.label :address_cont, 'キーワード'
-          = f.search_field :address_cont
-          = f.submit
       li.nav-item
         = link_to "場所一覧", maps_path, class: "nav-link active"
       li.nav-item
@@ -31,3 +27,8 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
         = link_to "ログイン", new_user_session_path, class: "nav-link active"
       li.nav-item
         = link_to "新規登録", new_user_registration_path, class: "nav-link active"
+      li.nav-item
+        = search_form_for(@q, url:search_posts_path, class: "form-inline") do |f|
+          = f.search_field :address_cont, class: "form-control mr-sm-2", id: 'searchFiled', placeholder: "キーワード検索"
+          = f.submit class: "btn btn-outline-success my-2 my-sm-0"
+  = link_to "PleAPP", root_path, class: "navbar-brand" 
