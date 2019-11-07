@@ -17,7 +17,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_link("first")
       expect(page).to have_link("second")
       
-      click_link 'first'
+      click_link 'first', match: :first
       expect(page).to have_link("first")
       expect(page).not_to have_link("second")
     end

@@ -15,7 +15,7 @@ RSpec.describe "Likes", type: :system do
       visit root_path
       expect(page).to have_link("いいね")
       expect {
-        click_link 'いいね'
+        click_link 'いいね', match: :first
       }.to change{ post.likes.count }.by(1)
     end
 
@@ -38,11 +38,11 @@ RSpec.describe "Likes", type: :system do
       visit root_path
       expect(page).to have_link("いいね")
       expect {
-        click_link 'いいね'
+        click_link 'いいね', match: :first
       }.to change{ post.likes.count }.by(1)
 
       expect {
-        click_link 'いいね'
+        click_link 'いいね', match: :first
       }.to change{ post.likes.count }.by(-1)
     end
   end

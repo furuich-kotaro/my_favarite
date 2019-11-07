@@ -37,7 +37,7 @@ RSpec.describe "Posts", type: :system do
 
       expect(page).to have_content '削除'
       expect {
-        click_on '削除'
+        click_on '削除', match: :first
 
         expect(page).to have_content '削除に成功しました'
       }.to change{ user.posts.count }.by(-1)
