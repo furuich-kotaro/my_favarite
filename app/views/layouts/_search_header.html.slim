@@ -5,7 +5,7 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
       li.nav-item
         = search_form_for(@q, url:search_posts_path) do |f|
           = f.label :address, 'キーワード'
-          = f.search_field :address_cont
+          = f.search_field :address_cont, id: 'searchFiled'
           = f.submit
       li.nav-item
         = link_to "場所一覧", maps_path, class: "nav-link active"

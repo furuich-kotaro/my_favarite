@@ -54,4 +54,29 @@ RSpec.describe "Posts", type: :system do
       expect(page).not_to have_content '削除'
     end
   end
+
+  describe 'search' do
+    let(:user) { create(:user)}
+    let(:other_user) { create(:user)}
+
+    scenario 'キーワード検索すると一致するものだけを表示' do
+      create(:post, user: user)
+      create(:post_kawaguchiko, user: other_user)
+      sign_in user
+
+      visit root_path
+      fill_in 'searchFiled', with: '東京'
+      click_button '検索'
+
+      expect(page).to have_content '東京'
+      expect(page).not_to have_content '河口湖'
+
+      visit root_path
+      fill_in 'searchFiled', with: '河口湖'
+      click_button '検索'
+
+      expect(page).to have_content '河口湖'
+      expect(page).not_to have_content '東京'
+    end
+  end
 end

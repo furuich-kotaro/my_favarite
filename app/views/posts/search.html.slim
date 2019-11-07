@@ -1,5 +1,10 @@
 .conteiner.col-11.mx-auto
   #alert-message
+  .sorts
+    span.sort-time
+      = sort_link(@q, :created_at, "投稿順")
+    span.sort-likes
+      = sort_link(@q, :likess_count, "人気順")
   .row.posts
     = render  "index", { posts: @posts }
     = paginate @posts
