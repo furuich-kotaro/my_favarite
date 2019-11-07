@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
   def index
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).includes(:user, :taggings)
     @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
       marker.lat post.latitude
       marker.lng post.longitude
@@ -11,7 +11,7 @@ class MapsController < ApplicationController
 
   def search
     @q = Post.search(search_params)
-    @posts = @q.result(distinct: true)
+    @posts = @q.result(distinct: true).includes(:user, :taggings)
     @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
       marker.lat post.latitude
       marker.lng post.longitude
