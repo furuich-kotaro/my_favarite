@@ -1,10 +1,10 @@
 .posts {
   display: flex;
   .card {
-    width: 23%;
+    width: 30%;
     margin: 5px 5px 5px 5px;
     .card-img-top {
-      height: 150px;
+      height: 25%;
       width: 100%;
     }
     .remove-card {
@@ -25,4 +25,9 @@
   .sort-likes{
     margin-left: 10px;
   }
+}
+
+.modal-user-name{
+  font-size: 20px;
+  margin-left: 30px;
 }
