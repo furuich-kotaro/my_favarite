@@ -12,5 +12,9 @@ Rails.application.routes.draw do
       get 'search', to: 'posts#search'
     end
   end
-  resources :maps, only: [:index]
+  resources :maps, only: [:index] do
+    collection do
+      get 'search', to: 'maps#search'
+    end
+  end
 end
