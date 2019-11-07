@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   def show
-    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(30).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
   end
 
   def search
     @q = Post.search(search_params)
-    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(30).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
   end
 
