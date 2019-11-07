@@ -11,9 +11,5 @@ html
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
   body
   = render 'layouts/devise_notices'
-  
-  - if controller.controller_name == 'posts' && (controller.action_name == 'index' || controller.action_name == 'search')
-    = render 'layouts/search_header'
-  - else
-    = render 'layouts/header'
+  = render 'layouts/header'
   = yield

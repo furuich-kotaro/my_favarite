@@ -6,5 +6,5 @@
     span.sort-likes
       = sort_link(@q, :likess_count, "人気順")
   .row.posts
-    = render  "index", { posts: @posts }
+    = render  "shard/index", { posts: @posts }
     = paginate @posts

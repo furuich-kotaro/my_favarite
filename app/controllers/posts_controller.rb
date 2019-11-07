@@ -2,8 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page]).per(30).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(30).order('created_at DESC')
     @like = Like.new
   end
 
@@ -30,7 +29,7 @@ class PostsController < ApplicationController
 
   def search
     @q = Post.search(search_params)
-    @posts = @q.result(distinct: true).page(params[:page]).per(30).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(30).order('created_at DESC')
     @like = Like.new
   end
 

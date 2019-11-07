@@ -1,0 +1,10 @@
+.user-show {
+  display: flex;
+  justify-content: space-between;
+  .post_search {
+    display: flex;
+    .form-controll{
+      width: 200px;
+    }
+  }
+}
