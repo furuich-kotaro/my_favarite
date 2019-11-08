@@ -19,7 +19,7 @@
   .form-group
     = f.label :tag_list, "タグ(カンマ区切り)"
     br
-    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)海,離島", "data-role" => "tagsinput"
+    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)海,離島"
   .form-group
     = f.label :pictures, "写真  ※必須"
     button.add-image.btn.btn-outline-primary type="button"

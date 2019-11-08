@@ -19,9 +19,3 @@ services:
       - db
     tty: true
     stdin_open: true
-
-  mailcatcher:
-    image: schickling/mailcatcher
-    ports:
-      - "1080:1080"
-      - "1025:1025"
