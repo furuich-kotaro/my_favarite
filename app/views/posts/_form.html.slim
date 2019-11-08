@@ -1,6 +1,6 @@
 = form_for post do |f|
   .form-group
-    = f.label :address, "お気に入りの場所(地名や住所)"
+    = f.label :address, "お気に入りの場所(地名や住所) ※必須"
     = f.text_field :address, autocomplete: "address", class: "form-control", id: "postAddress"
     .form-grup.map-search
       .label
@@ -15,12 +15,13 @@
       #map style="width: 600px; height: 400px;"
   .form-group
     = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
-    = f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription", placeholder: "入力しなくても投稿できます"
+    = f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription"
   .form-group
-    = f.label :tag_list, "タグ(カンマ区切り))"
-    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "入力しなくても投稿できます！  etc)海,離島"
+    = f.label :tag_list, "タグ(カンマ区切り)"
+    br
+    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)海,離島", "data-role" => "tagsinput"
   .form-group
-    = f.label :pictures, "写真"
+    = f.label :pictures, "写真  ※必須"
     button.add-image.btn.btn-outline-primary type="button"
       | 追加
     .input-area.f-container
