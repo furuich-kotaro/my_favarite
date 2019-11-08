@@ -1,6 +1,6 @@
 - posts.each do |post|
   .card.post id="post-#{post.id}"
-    - if post.pictures.length >= 2
+    - if post.pictures.length >= 1
       .carousel.slide[id="carouselExampleControls#{post.id}" data-interval="false"]
         .carousel-inner
           - post.pictures.length.times do |i|

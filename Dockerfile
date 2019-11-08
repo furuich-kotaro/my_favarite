@@ -1,7 +1,8 @@
 FROM ruby:2.6.0
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y nodejs
+    && apt-get update && apt-get install -y nodejs\
+    imagemagick\
 
 # 作業ディレクトリの作成、設定
 RUN mkdir /my_favarite
