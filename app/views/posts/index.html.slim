@@ -4,7 +4,7 @@
     span.sort-time
       = sort_link(@q, :created_at, "投稿順")
     span.sort-likes
-      = sort_link(@q, :likess_count, "人気順")
+      = sort_link(@q, :likes_count, "人気順")
   .row.posts
     = render  "shard/index", { posts: @posts }
   = paginate @posts
