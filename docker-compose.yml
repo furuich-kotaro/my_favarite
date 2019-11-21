@@ -1,21 +1,42 @@
-version: '3'
+version: "3"
 services:
   db:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
+    volumes:
+      - db-data:/var/lib/mysql
     ports:
       - "3306:3306"
 
-  web:
+  app:
     build: .
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/my_favarite
+      - public-data:/my_favarite/public
+      - tmp-data:/my_favarite/tmp
+      - log-data:/my_favarite/log
     ports:
       - "3000:3000"
     links:
       - db
     tty: true
     stdin_open: true
+
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/my_favarite/public
+      - tmp-data:/my_favarite/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - app
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
