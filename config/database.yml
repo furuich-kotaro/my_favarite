@@ -16,7 +16,7 @@ default: &default
   username: root
   password: <%= ENV.fetch("MYSQL_PASSWORD") { "" } %>
   host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
-  
+
 development:
   <<: *default
   database: my_favarite_development
@@ -27,6 +27,10 @@ test:
 
 production:
   <<: *default
-  database: my_favarite_production
-  username: my_favarite
-  password: <%= ENV['MY_FAVARITE_DATABASE_PASSWORD'] %>
+  encoding: utf8
+  reconnect: false
+  host: <%= Rails.application.credentials.db[:host] %>
+  database: <%= Rails.application.credentials.db[:database] %>
+  username: <%= Rails.application.credentials.db[:username] %>
+  password: <%= Rails.application.credentials.db[:password] %>
+  # socket: /var/lib/mysql/mysql.sock

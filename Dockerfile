@@ -15,7 +15,7 @@ COPY ./Gemfile $APP_ROOT/Gemfile
 COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
 # Gemfileのbundle install
-RUN bundle install
+RUN bundle install -j4
 
 COPY . $APP_ROOT
 

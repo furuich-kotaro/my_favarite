@@ -41,6 +41,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'dotenv-rails'
 gem 'pry-rails'
@@ -59,6 +60,11 @@ group :development, :test do
   gem "rspec_junit_formatter"
   gem 'bullet'
   gem 'faker'
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -86,6 +92,10 @@ group :test do
   gem 'shoulda-matchers',
     git: 'https://github.com/thoughtbot/shoulda-matchers.git',
     branch: 'rails-5'
+end
+
+group :production do
+  gem 'unicorn', '5.4.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

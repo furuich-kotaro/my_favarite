@@ -7,7 +7,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    script [src="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API_KEY']}" async defer]
+    script [src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:map_api_key]}" async defer]
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
   body
   = render 'layouts/devise_notices'

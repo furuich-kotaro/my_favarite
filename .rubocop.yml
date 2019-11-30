@@ -18,6 +18,9 @@ AllCops:
     - tmp/*
     - vendor/**/*
     - config/spring.rb
+    - config/unicorn.rb
+    - config/deploy.rb
+    - config/deploy/production.rb
 
 # 日本語でのコメントを許可
 AsciiComments:
