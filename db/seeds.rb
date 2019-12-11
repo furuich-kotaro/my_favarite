@@ -92,9 +92,9 @@ Post.create(
   address: '竜王マウンテンパーク',
   description: '雲海が高確率で楽しめる天空テラス',
   pictures: [
-    open("#{Rails.root}/app/assets/images/posts/竜王マウンテンパーク/1.jpg"),
-    open("#{Rails.root}/app/assets/images/posts/竜王マウンテンパーク/2.jpg"),
-    open("#{Rails.root}/app/assets/images/posts/竜王マウンテンパーク/3.jpg")
+    open("#{Rails.root}/app/assets/images/posts/竜王/1.jpg"),
+    open("#{Rails.root}/app/assets/images/posts/竜王/2.jpg"),
+    open("#{Rails.root}/app/assets/images/posts/竜王/3.jpg")
   ],
   latitude: 36.783958,
   longitude: 138.456294,
