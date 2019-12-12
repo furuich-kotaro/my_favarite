@@ -49,3 +49,6 @@ Metrics/AbcSize:
 #ブロック内の行数は50まで
 Metrics/BlockLength:
   Max: 40
+
+Lint/HandleExceptions:
+  Enabled: false
