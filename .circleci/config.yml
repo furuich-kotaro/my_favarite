@@ -11,18 +11,17 @@ jobs:
         environment:
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: 'password'
+          DB_USERNAME: "root"
+          DB_PASSWORD: "password"
 
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: ""
           MYSQL_DATABASE: my_favarite_test
           MYSQL_HOST: 127.0.0.1
-          MYSQL_ROOT_HOST: '%'
+          MYSQL_ROOT_HOST: "%"
           MYSQL_USER: root
-
 
     working_directory: ~/favorite_place
 
@@ -45,11 +44,10 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      
+
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
 
       # Database setup
       - run: bundle exec rake db:create
@@ -80,3 +78,15 @@ jobs:
       - run:
           name: run rubocop
           command: bundle exec rubocop -a
+
+      - add_ssh_keys:
+          fingerprints:
+            - "c8:29:77:e8:99:20:2b:6e:eb:1e:ab:77:ff:b7:37:44"
+
+      - deploy:
+          name: Capistrano deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy
