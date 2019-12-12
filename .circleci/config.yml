@@ -84,9 +84,17 @@ jobs:
             - "c8:29:77:e8:99:20:2b:6e:eb:1e:ab:77:ff:b7:37:44"
 
       - deploy:
-          name: Capistrano deploy
+          name: Capistrano deploy unicorn:stop
           command: |
             if [ "${CIRCLE_BRANCH}" != "master" ]; then
               exit 0
             fi
-            bundle exec cap production deploy
+            bundle exec cap production deploy unicorn:stop
+
+      - deploy:
+          name: Capistrano deploy unicorn:stop
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+            fi
+            bundle exec cap production deploy unicorn:start
