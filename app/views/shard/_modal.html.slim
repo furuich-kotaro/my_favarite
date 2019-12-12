@@ -1,5 +1,5 @@
 button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#demoNormalModal#{post.id}"]
-  |  詳細 
+  |  詳細
 .modal.fade[tabindex="-1" id="demoNormalModal#{post.id}" role="dialog" aria-labelledby="modal" aria-hidden="true"]
   .modal-dialog[role="document"]
     .modal-content
@@ -58,3 +58,8 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
         button.btn.btn-secondary[type="button" data-dismiss="modal"]
           | 閉じる
 
+javascript:
+  history.replaceState(null, document.getElementsByTagName('title')[0].innerHTML, null);
+  window.addEventListener('popstate', function(e) {
+    window.location.reload();
+  });
