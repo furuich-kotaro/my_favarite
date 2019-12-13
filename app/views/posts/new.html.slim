@@ -21,7 +21,7 @@ javascript:
       zoom: 8
     });
     // 入力を取得
-    let inputAddress = document.getElementById("address").value;
+    let inputAddress = document.getElementById("address-search-form").value;
 
     // geocodingしたあとmapを移動
     geocoder.geocode({ address: inputAddress }, function(results, status) {

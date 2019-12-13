@@ -44,4 +44,11 @@ $(document).on("turbolinks:load", function() {
       readURL(this);
     });
   });
+  $("#postAddress").blur(function() {
+    var address_value = $("#postAddress").val();
+    if (address_value.length !== 0) {
+      $("#address-search-form").val(address_value);
+      $("#address-search-button").trigger("click");
+    }
+  });
 });

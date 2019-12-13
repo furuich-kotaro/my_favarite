@@ -1,0 +1,27 @@
+.address-label,
+.pictures-label {
+  color: red;
+}
+
+.map-search {
+  .search-area {
+    height: calc(1.5em + 0.75rem + 0.2rem);
+    display: flex;
+    margin-top: 1.5rem;
+
+    #address-search-form {
+      width: 31rem;
+    }
+  }
+  .label {
+    height: 3rem;
+    margin-bottom: 0.5rem;
+    .post-alert-message {
+      color: red;
+    }
+  }
+}
+#map {
+  height: 40rem;
+  width: 100%;
+}
