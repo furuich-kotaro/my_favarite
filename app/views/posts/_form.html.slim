@@ -1,27 +1,27 @@
 = form_for post do |f|
   .form-group
-    = f.label :address, "お気に入りの場所(地名や住所) ※必須"
-    = f.text_field :address, autocomplete: "address", class: "form-control", id: "postAddress"
+    = f.label :address, "お気に入りの場所(地名や住所) ※必須", class: "address-label"
+    = f.text_field :address, autocomplete: "address", class: "form-control", id: "postAddress",  placeholder: "etc) 東京タワー, 東京都港区芝公園４丁目２−８..."
     .form-grup.map-search
-      .label
-        p 
-          | 住所があっているか、存在しているか確認してください。
-          br                    
-          | 検索して一致しない場合は場所一覧に表示されません
       .search-area
-        input#address.form-control type="textbox" placeholder="地名や住所などで検索してください"
-        button.btn.btn-outline-primary type="button" onclick="codeAddress()"
+        input#address-search-form.form-control type="textbox" placeholder="地名や住所などで検索してください"
+        button#address-search-button.btn.btn-outline-primary type="button" onclick="codeAddress()"
           | 検索
-      #map style="width: 600px; height: 400px;"
+      .label
+        span.post-alert-message
+          | 該当する場所がありません
+        sapn.post-alert-description
+          | とメッセージが表示された場所は場所一覧で赤いピンが表示されません
+      #map style="width: 37.5rem; height: 25rem;"
   .form-group
     = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
     = f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription"
   .form-group
     = f.label :tag_list, "タグ(カンマ区切り)"
     br
-    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)海,離島", "data-role": "tagsinput"
+    = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)東京,展望台", "data-role": "tagsinput"
   .form-group
-    = f.label :pictures, "写真  ※必須"
+    = f.label :pictures, "写真  ※必須", class: 'pictures-label'
     button.add-image.btn.btn-outline-primary type="button"
       | 追加
     .input-area.f-container
