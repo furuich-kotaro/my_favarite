@@ -1,49 +1,53 @@
-.modal-content
-  .modal-header
-    h5#demoModalTitle.modal-title
-      = post.address
-    span.modal-user-name
-      = link_to post.user.name, user_path(post.user.id), class: "user-link"
-  .modal-body
-    - if post.pictures.length >= 2
-      .carousel.slide[id="carouselExampleControls1#{post.id}" data-interval="false"]
-        .carousel-inner
-          - post.pictures.length.times do |i|
-            - if i == 0
-              .carousel-item.active[data-interval="false"]
-                = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
-            - else
-              .carousel-item[data-interval="false"]
-                = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
-        a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
-          span.carousel-control-prev-icon[aria-hidden="true"]
-          span.sr-only
-            | Previous
-        a.carousel-control-next[href="#carouselExampleControls1#{post.id}" role="button" data-slide="next"]
-          span.carousel-control-next-icon[aria-hidden="true"]
-          span.sr-only
-            | Next
-    - else
-      = image_tag post.pictures[0].url, class: 'card-img-top', style: "height: 400px;"
-    = link_to "googleマップで開く" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank"
-    - if post.description.present?
-      h5
-        |
-          お気に入りポイント
-      p
-        = post.description
+.card.post id="post-#{post.id}"
+  - if post.pictures.length >= 1
+    .carousel.slide[id="carouselExampleControls#{post.id}" data-interval="false"]
+      .carousel-inner
+        - post.pictures.length.times do |i|
+          - if i == 0
+            .carousel-item.active[data-interval="false"]
+              = image_tag post.pictures[i].url, class: "d-block w-100 infowindow-img-top"
+          - else
+            .carousel-item[data-interval="false"]
+              = image_tag post.pictures[i].url, class: "d-block w-100 infowindow-img-top"
+      a.carousel-control-prev[href="#carouselExampleControls#{post.id}" role="button" data-slide="prev"]
+        span.carousel-control-prev-icon[aria-hidden="true"]
+        span.sr-only
+          | Previous
+      a.carousel-control-next[href="#carouselExampleControls#{post.id}" role="button" data-slide="next"]
+        span.carousel-control-next-icon[aria-hidden="true"]
+        span.sr-only
+          | Next
+  - else
+    = image_tag post.pictures[0].url, class: 'infowindow-img-top'
+  .card_user_info
+    = link_to post.user.name, user_path(post.user.id), class: "user-link"
+    = image_tag post.user.image.url, class: "user-image"
+  .card-body
+    h6.card-title
+      = post.address.truncate(15)
     - if user_signed_in? && ( post.user.id == current_user.id )
-      = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link btn btn-sm btn-primary remove-card", data: {post: post.id}
-    - if user_signed_in? && ( post.user.id != current_user.id )
-      = render 'likes/like', { post: post}
+      = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+      span.infowindow-like
+        = "#{post.likes.count}いいね"
+      .card-tags
+        - post.tag_list.each do |tag|
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
+    - elsif user_signed_in? && ( post.user.id != current_user.id )
+      - if current_user.already_liked?(post)
+        span.infowindow-like
+          = post.likes.count
+          = link_to "いいね", post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self, class: "likes"
+      - else
+        span.infowindow-like
+          = post.likes.count
+          = link_to "いいね",  post_likes_path(post), method: :post, target: :_self, class: "likes"
+      .card-tags
+        - post.tag_list.each do |tag|
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
     - else
-      br
-      span.like
-        = post.likes.count
-        span
-          |
-            いいね
-    br
-    - post.tag_list.each do |tag|
-      span.tag.badge.badge-info
-        = tag
+      span.infowindow-like
+        = "#{post.likes.count}いいね"
+      .card-tags
+        - post.tag_list.each do |tag|
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
+

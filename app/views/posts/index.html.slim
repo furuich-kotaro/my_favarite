@@ -1,10 +1,17 @@
 .conteiner.col-10.mx-auto
   #alert-message
-  .sorts
-    span.sort-time
-      = sort_link(@q, :created_at, "投稿順")
-    span.sort-likes
-      = sort_link(@q, :likes_count, "人気順")
+  .index-header
+    .popular-tags
+      .popular-tags__text
+        | 人気のタグtop10
+      .popular-tags__lists
+        - @tags.each do |tag|
+          = link_to tag, posts_path(tag_name: tag.name), class: "popular-tags__lists__list badge badge-secondary"
+    .sorts
+      span.sort-time
+        = sort_link(@q, :created_at, "投稿順")
+      span.sort-likes
+        = sort_link(@q, :likes_count, "人気順")
   .row.posts
     = render  "shard/index", { posts: @posts }
   = paginate @posts

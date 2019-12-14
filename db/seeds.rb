@@ -21,6 +21,7 @@ Post.create(
             ],
   latitude: 35.658581,
   longitude: 139.745433,
+  tag_list: '東京,タワー,絶景',
   user_id: 1
 )
 
@@ -34,6 +35,7 @@ Post.create(
             ],
   latitude: 36.733696,
   longitude: 138.433344,
+  tag_list: '温泉,聖地巡礼,千と千尋の神隠し,絶景',
   user_id: 1
 )
 
@@ -46,6 +48,7 @@ Post.create(
   ],
   latitude: 34.504093,
   longitude: 134.239404,
+  tag_list: '離島,田んぼ,絶景,自然,田舎',
   user_id: 1
 )
 
@@ -59,6 +62,7 @@ Post.create(
   ],
   latitude: 36.697121,
   longitude: 137.798859,
+  tag_list: '池,絶景,自然',
   user_id: 2
 )
 
@@ -72,6 +76,7 @@ Post.create(
   ],
   latitude: 36.40604,
   longitude: 140.598225,
+  tag_list: '公園,花,絶景,自然',
   user_id: 2
 )
 
@@ -85,6 +90,7 @@ Post.create(
   ],
   latitude: 34.360624,
   longitude: 130.875331,
+  tag_list: '離島,橋,絶景,海',
   user_id: 3
 )
 
@@ -98,6 +104,7 @@ Post.create(
   ],
   latitude: 36.783958,
   longitude: 138.456294,
+  tag_list: 'カフェ,雲海,絶景,自然',
   user_id: 3
 )
 
@@ -111,6 +118,7 @@ Post.create(
   ],
   latitude: 43.49342 ,
   longitude: 142.614019,
+  tag_list: '池,青い池,絶景,自然',
   user_id: 4
 )
 
@@ -124,6 +132,7 @@ Post.create(
   ],
   latitude: 43.49342,
   longitude: 142.614019,
+  tag_list: '警告,橋,絶景,自然',
   user_id: 4
 )
 
@@ -137,6 +146,7 @@ Post.create(
   ],
   latitude: 35.517095,
   longitude: 138.751779,
+  tag_list: '池,山,絶景,自然',
   user_id: 5
 )
 
@@ -149,6 +159,7 @@ Post.create(
   ],
   latitude: 37.12447,
   longitude: 138.529058,
+  tag_list: '田舎,棚田,絶景,自然',
   user_id: 5
 )
 
@@ -161,6 +172,7 @@ Post.create(
   ],
   latitude: 35.474928,
   longitude: 138.666969,
+  tag_list: '絶景,自然',
   user_id: 6
 )
 
@@ -173,6 +185,7 @@ Post.create(
   ],
   latitude: 33.977005,
   longitude: 135.072327,
+  tag_list: '海,絶景,自然',
   user_id: 7
 )
 
