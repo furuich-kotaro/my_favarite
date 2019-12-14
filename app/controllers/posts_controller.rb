@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   def index
     @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
+    @tags = ActsAsTaggableOn::Tag.most_used(10)
+    @posts = @posts.tagged_with(params[:tag_name].to_s) if params[:tag_name]
   end
 
   def new

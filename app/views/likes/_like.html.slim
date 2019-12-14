@@ -1,10 +1,8 @@
 - if current_user.already_liked?(post)
-  br
   span.like
     = post.likes.count
     = link_to "いいね", post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self, class: "likes"
 - else
-  br
   span.like
     = post.likes.count
     = link_to "いいね",  post_likes_path(post), method: :post, target: :_self, class: "likes"

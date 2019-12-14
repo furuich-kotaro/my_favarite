@@ -31,7 +31,7 @@
         = "#{post.likes.count}いいね"
       .card-tags
         - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-primary"
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
     - elsif user_signed_in? && ( post.user.id != current_user.id )
       - if current_user.already_liked?(post)
         span.infowindow-like
@@ -43,11 +43,11 @@
           = link_to "いいね",  post_likes_path(post), method: :post, target: :_self, class: "likes"
       .card-tags
         - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-primary"
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
     - else
       span.infowindow-like
         = "#{post.likes.count}いいね"
       .card-tags
         - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-primary"
+          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
 

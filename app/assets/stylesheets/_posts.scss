@@ -1,8 +1,42 @@
+.index-header {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  .popular-tags {
+    height: 1.5rem;
+    display: flex;
+    margin: auto;
+    &__text {
+      overflow-x: auto;
+    }
+    &__lists {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      &__list {
+        display: inline-block;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+  .sorts {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .sort-likes {
+      margin-left: 1rem;
+    }
+  }
+}
+
 .posts {
   display: flex;
   .card {
-    width: 30%;
-    margin: 5px 5px 5px 5px;
+    width: 33%;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     .card-img-top {
       height: 25%;
       width: 100%;
@@ -16,14 +50,19 @@
     .tag {
       margin-left: 0.5rem;
     }
-  }
-}
-
-.sorts {
-  display: flex;
-  justify-content: flex-end;
-  .sort-likes {
-    margin-left: 1rem;
+    .card-tags {
+      height: 2rem;
+      margin-top: 0.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      .card-tag {
+        display: inline-block;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+    }
   }
 }
 
