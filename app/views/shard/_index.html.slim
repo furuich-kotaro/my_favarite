@@ -27,23 +27,21 @@
     .card-body
       h6.card-title
         = post.address.truncate(15)
-      = render 'shard/modal', {post: post}
-      - if user_signed_in? && ( post.user.id == current_user.id )
-        = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "card-link btn btn-sm btn-primary remove-card", data: {post: post.id}
-        span.like
-          = "#{post.likes.count}いいね"
-        .card-tags
-          - post.tag_list.each do |tag|
-            = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
-      - elsif user_signed_in? && ( post.user.id != current_user.id )
-        = render 'likes/like', { post: post}
-        .card-tags
-          - post.tag_list.each do |tag|
-            = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
-      - else
-        span.like
-          = "#{post.likes.count}いいね"
-        .card-tags
-          - post.tag_list.each do |tag|
-            = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
+      .card-body__menu
+        = render 'shard/modal', {post: post}
+        - if user_signed_in? && ( post.user.id == current_user.id )
+          = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+          div(class="likes-#{post.id} like")
+            i.far.fa-heart.gray_heart
+            = post.likes.count
+        - elsif user_signed_in? && ( post.user.id != current_user.id )
+          div(class="likes-#{post.id} like")
+            = render 'likes/like', { post: post}
+        - else
+          div(class="likes-#{post.id} like")
+            i.far.fa-heart.gray_heart
+            = post.likes.count
+      .card-tags
+        - post.tag_list.each do |tag|
+          = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
 

@@ -25,29 +25,20 @@
   .card-body
     h6.card-title
       = post.address.truncate(15)
-    - if user_signed_in? && ( post.user.id == current_user.id )
-      = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
-      span.infowindow-like
-        = "#{post.likes.count}いいね"
-      .card-tags
-        - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
-    - elsif user_signed_in? && ( post.user.id != current_user.id )
-      - if current_user.already_liked?(post)
-        span.infowindow-like
+    .card-body__menu
+      - if user_signed_in? && ( post.user.id == current_user.id )
+        = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+        div(class="likes-#{post.id} like")
+          i.far.fa-heart.gray_heart
           = post.likes.count
-          = link_to "いいね", post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self, class: "likes"
+      - elsif user_signed_in? && ( post.user.id != current_user.id )
+        div(class="likes-#{post.id} like")
+          = render 'likes/like', { post: post}
       - else
-        span.infowindow-like
+        div(class="likes-#{post.id} like")
+          i.far.fa-heart.gray_heart
           = post.likes.count
-          = link_to "いいね",  post_likes_path(post), method: :post, target: :_self, class: "likes"
-      .card-tags
-        - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
-    - else
-      span.infowindow-like
-        = "#{post.likes.count}いいね"
-      .card-tags
-        - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
+    .card-tags
+      - post.tag_list.each do |tag|
+        = link_to tag, posts_path(tag_name: tag), class: "infowindow-tag badge badge-secondary"
 
