@@ -50,5 +50,8 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 40
 
+Lint/SuppressedException:
+  Enabled: false
+
 Lint/HandleExceptions:
   Enabled: false

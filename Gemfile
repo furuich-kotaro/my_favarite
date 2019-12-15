@@ -57,6 +57,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'rspec-retry'
   gem 'factory_bot_rails'
   gem "rspec_junit_formatter"
   gem 'bullet'
@@ -94,8 +95,8 @@ group :test do
   gem 'email_spec'
   gem 'webdrivers'
   gem 'shoulda-matchers',
-    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
-    branch: 'rails-5'
+      git: 'https://github.com/thoughtbot/shoulda-matchers.git',
+      branch: 'rails-5'
 end
 
 group :production do

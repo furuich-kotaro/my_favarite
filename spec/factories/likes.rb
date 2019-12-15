@@ -23,6 +23,6 @@
 FactoryBot.define do
   factory :like do
     association :post
-    user { post.user }
+    association :user
   end
 end

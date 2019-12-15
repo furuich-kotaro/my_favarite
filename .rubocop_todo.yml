@@ -12,22 +12,22 @@
 # Include: **/*.gemfile, **/Gemfile, **/gems.rb
 Bundler/OrderedGems:
   Exclude:
-    - 'Gemfile'
+    - "Gemfile"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   Exclude:
-    - 'Gemfile'
-    - 'config/application.rb'
+    - "Gemfile"
+    - "config/application.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Layout/EmptyLines:
   Exclude:
-    - 'spec/rails_helper.rb'
+    - "spec/rails_helper.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -36,46 +36,46 @@ Layout/EmptyLines:
 # SupportedStylesForEmptyBrackets: space, no_space
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
-    - 'config/environments/production.rb'
+    - "config/environments/production.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: final_newline, final_blank_line
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Exclude:
-    - 'config/environments/test.rb'
-    - 'spec/supports/capybara.rb'
+    - "config/environments/test.rb"
+    - "spec/supports/capybara.rb"
 
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AllowInHeredoc.
 Layout/TrailingWhitespace:
   Exclude:
-    - 'config/application.rb'
-    - 'spec/supports/capybara.rb'
+    - "config/application.rb"
+    - "spec/supports/capybara.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/BlockComments:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - "spec/spec_helper.rb"
 
 # Offense count: 4
 Style/Documentation:
   Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'app/helpers/application_helper.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'config/application.rb'
+    - "spec/**/*"
+    - "test/**/*"
+    - "app/helpers/application_helper.rb"
+    - "app/mailers/application_mailer.rb"
+    - "app/models/application_record.rb"
+    - "config/application.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
   Exclude:
-    - 'bin/rspec'
+    - "bin/rspec"
 
 # Offense count: 40
 # Cop supports --auto-correct.
@@ -87,20 +87,20 @@ Style/FrozenStringLiteralComment:
 # Offense count: 2
 Style/MixinUsage:
   Exclude:
-    - 'bin/setup'
-    - 'bin/update'
+    - "bin/setup"
+    - "bin/update"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantBegin:
   Exclude:
-    - 'bin/yarn'
+    - "bin/yarn"
 
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/StderrPuts:
   Exclude:
-    - 'bin/yarn'
+    - "bin/yarn"
 
 # Offense count: 10
 # Cop supports --auto-correct.
@@ -108,11 +108,11 @@ Style/StderrPuts:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'Gemfile'
-    - 'bin/yarn'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-    - 'spec/rails_helper.rb'
+    - "Gemfile"
+    - "bin/yarn"
+    - "config/environments/production.rb"
+    - "config/puma.rb"
+    - "spec/rails_helper.rb"
 
 # Offense count: 2
 # Cop supports --auto-correct.

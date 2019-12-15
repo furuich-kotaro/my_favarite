@@ -1,8 +1,8 @@
 - if current_user.already_liked?(post)
-  span.like
+  = link_to post_like_path(post, post.find_like(post, current_user)), class: "likes-link likes-link-delete", method: :delete, remote: true do
+    i.fas.fa-heart.red_heart
     = post.likes.count
-    = link_to "いいね", post_like_path(post, post.find_like(post, current_user)), method: :delete, target: :_self, class: "likes"
 - else
-  span.like
+  = link_to post_likes_path(post), class: "likes-link likes-link-create", method: :post, remote: true do
+    i.far.fa-heart.red_heart
     = post.likes.count
-    = link_to "いいね",  post_likes_path(post), method: :post, target: :_self, class: "likes"
