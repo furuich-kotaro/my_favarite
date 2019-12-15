@@ -52,3 +52,6 @@ Metrics/BlockLength:
 
 Lint/SuppressedException:
   Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
