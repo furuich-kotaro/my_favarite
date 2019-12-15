@@ -92,7 +92,7 @@ jobs:
             bundle exec cap production deploy unicorn:stop
 
       - deploy:
-          name: Capistrano deploy unicorn:stop
+          name: Capistrano deploy unicorn:start
           command: |
             if [ "${CIRCLE_BRANCH}" != "master" ]; then
               exit 0
