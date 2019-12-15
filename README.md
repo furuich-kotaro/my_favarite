@@ -1,8 +1,7 @@
 ## Myfavorite_pleace
 
 ツイッター風の画像＋自分の好きな場所の位置情報を投稿するアプリです
-
-<img width="800" alt="スクリーンショット 2019-12-12 15 32 33" src="https://user-images.githubusercontent.com/54981611/70688474-3d588c80-1cf5-11ea-9010-8468a05b28ab.png">
+<img width="1453" alt="スクリーンショット 2019-12-15 23 47 29" src="https://user-images.githubusercontent.com/54981611/70864463-68610b80-1f95-11ea-9b7f-d808e4efc958.png">
 <img width="800" alt="スクリーンショット 2019-12-12 15 32 53" src="https://user-images.githubusercontent.com/54981611/70688482-42b5d700-1cf5-11ea-9edc-8006db0e236b.png">
 <img width="800" alt="スクリーンショット 2019-12-12 15 33 10" src="https://user-images.githubusercontent.com/54981611/70688488-45b0c780-1cf5-11ea-99c0-d2a6c9605976.png">
 
