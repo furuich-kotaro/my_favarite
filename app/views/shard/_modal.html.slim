@@ -38,7 +38,7 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
             |
               お気に入りポイント
           p
-            = post.description
+            = safe_join(post.description.split("\n"), tag(:br))
         .modal-body__menu
           - if user_signed_in? && ( post.user.id == current_user.id )
             = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
