@@ -1,0 +1,43 @@
+.modal-header {
+  &__left {
+    display: flex;
+    margin-left: 2rem;
+    .modal-user-name {
+      display: block;
+      font-size: 1.3rem;
+      margin: auto;
+      padding: 0.5rem;
+    }
+    .modal-user-image {
+      display: block;
+      height: 3rem;
+      width: 3rem;
+      margin: auto;
+      border-radius: 50%;
+    }
+  }
+  &__right {
+    margin: auto;
+    .modal-title {
+      width: 13rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+  }
+}
+
+.modal-body {
+  &__pictures {
+    padding-bottom: 1rem;
+  }
+  .modal-body__menu {
+    margin-top: 0.5rem;
+    display: flex;
+  }
+  .post-description {
+    margin-left: 0.5rem;
+  }
+  .modal-tag {
+    margin-right: 0.5rem;
+  }
+}

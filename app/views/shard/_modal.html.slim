@@ -4,44 +4,47 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
   .modal-dialog[role="document"]
     .modal-content
       .modal-header
-        h5#demoModalTitle.modal-title
-          = post.address
-        span.modal-user-name
-          = link_to post.user.name, user_path(post.user.id), class: "user-link"
+        .modal-header__left
+          = image_tag post.user.image.url, class: "modal-user-image"
+          span.modal-user-name
+            = link_to post.user.name, user_path(post.user.id), class: "user-link"
+        .modal-header__right
+          #demoModalTitle.modal-title
+            = post.address
         button.close[type="button" data-dismiss="modal" aria-label="Close"]
           span[aria-hidden="true"]
             | ×
       .modal-body
-        - if post.pictures.length >= 2
-          .carousel.slide[id="carouselExampleControls1#{post.id}" data-interval="false"]
-            .carousel-inner
-              - post.pictures.length.times do |i|
-                - if i == 0
-                  .carousel-item.active[data-interval="false"]
-                    = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
-                - else
-                  .carousel-item[data-interval="false"]
-                    = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top", style: "height: 400px;"
-            a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
-              span.carousel-control-prev-icon[aria-hidden="true"]
-              span.sr-only
-                | Previous
-            a.carousel-control-next[href="#carouselExampleControls1#{post.id}" role="button" data-slide="next"]
-              span.carousel-control-next-icon[aria-hidden="true"]
-              span.sr-only
-                | Next
-        - else
-          = image_tag post.pictures[0].url, class: 'card-img-top', style: "height: 400px;"
-        = link_to "googleマップで開く" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank"
+        .modal-body__pictures
+          - if post.pictures.length >= 2
+            .carousel.slide[id="carouselExampleControls1#{post.id}" data-interval="false"]
+              .carousel-inner
+                - post.pictures.length.times do |i|
+                  - if i == 0
+                    .carousel-item.active[data-interval="false"]
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+                  - else
+                    .carousel-item[data-interval="false"]
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+              a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
+                span.carousel-control-prev-icon[aria-hidden="true"]
+                span.sr-only
+                  | Previous
+              a.carousel-control-next[href="#carouselExampleControls1#{post.id}" role="button" data-slide="next"]
+                span.carousel-control-next-icon[aria-hidden="true"]
+                span.sr-only
+                  | Next
+          - else
+            = image_tag post.pictures[0].url, class: 'modal-img-top', style: "height: 400px;"
         - if post.description.present?
           h5
             |
               お気に入りポイント
-          p
-            = post.description
+          .post-description
+            = safe_join(post.description.split("\n"), tag(:br))
         .modal-body__menu
           - if user_signed_in? && ( post.user.id == current_user.id )
-            = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+            = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "btn btn-sm btn-primary remove-card", data: {post: post.id}
             div(class="likes-#{post.id} like")
               i.far.fa-heart.gray_heart
               = post.likes.count
@@ -52,9 +55,11 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
             div(class="likes-#{post.id} like")
               i.far.fa-heart.gray_heart
               = post.likes.count
-        - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "modal-tag badge badge-secondary"
+        - if post.tag_list.present?
+          - post.tag_list.each do |tag|
+            = link_to tag, posts_path(tag_name: tag), class: "modal-tag badge badge-secondary"
       .modal-footer
+        = link_to "googleマップで開く" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank", class: "likn-gopglemap"
         button.btn.btn-secondary[type="button" data-dismiss="modal"]
           | 閉じる
 
