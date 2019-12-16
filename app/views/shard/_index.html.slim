@@ -41,7 +41,8 @@
           div(class="likes-#{post.id} like")
             i.far.fa-heart.gray_heart
             = post.likes.count
-      .card-tags
-        - post.tag_list.each do |tag|
-          = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
+      - if post.tag_list.present?
+        .card-tags
+          - post.tag_list.each do |tag|
+            = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
 
