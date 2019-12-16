@@ -17,10 +17,13 @@ AllCops:
     - public/*
     - tmp/*
     - vendor/**/*
+    - app/models/follow.rb
     - config/spring.rb
     - config/unicorn.rb
     - config/deploy.rb
     - config/deploy/production.rb
+    - config/application.rb
+    - config/environments/development.rb
 
 # 日本語でのコメントを許可
 AsciiComments:
@@ -53,5 +56,5 @@ Metrics/BlockLength:
 Lint/SuppressedException:
   Enabled: false
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Enabled: false

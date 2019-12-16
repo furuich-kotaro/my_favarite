@@ -22,15 +22,15 @@
     - else
       = image_tag post.pictures[0].url, class: 'card-img-top'
     .card_user_info
-      = link_to post.user.name, user_path(post.user.id), class: "user-link"
       = image_tag post.user.image.url, class: "user-image"
+      = link_to post.user.name, user_path(post.user.id), class: "user-link"
     .card-body
       h6.card-title
         = post.address.truncate(15)
       .card-body__menu
         = render 'shard/modal', {post: post}
         - if user_signed_in? && ( post.user.id == current_user.id )
-          = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "infowindow-link btn btn-sm btn-primary remove-card", data: {post: post.id}
+          = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "¥btn btn-sm btn-primary  btn-sm remove-card", data: {post: post.id}
           div(class="likes-#{post.id} like")
             i.far.fa-heart.gray_heart
             = post.likes.count
@@ -45,4 +45,3 @@
         .card-tags
           - post.tag_list.each do |tag|
             = link_to tag, posts_path(tag_name: tag), class: "card-tag badge badge-secondary"
-

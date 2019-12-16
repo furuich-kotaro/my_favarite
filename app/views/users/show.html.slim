@@ -1,8 +1,9 @@
 .conteiner.col-10.mx-auto
   #alert-message
-  span
-      = "#{@posts.first.user.name}さんの投稿一覧"
-  .user-show
+  .user-show-info
+    = "#{@posts.first.user.name}さんの投稿一覧"
+    = render 'users/follow', { user: @posts.first.user}
+  .user-show-menu
     .user-search-area
       = search_form_for(@q, url:search_user_path(@posts.first.user.id)) do |f|
         = f.search_field :address_cont, class: "form-control", id: 'userSearchFiled', placeholder: "キーワード検索"

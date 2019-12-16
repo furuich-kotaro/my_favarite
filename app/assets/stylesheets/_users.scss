@@ -1,4 +1,10 @@
-.user-show {
+.user-show-info {
+  height: 2rem;
+  display: flex;
+  align-content: center;
+  margin-bottom: 0.5rem;
+}
+.user-show-menu {
   display: flex;
   justify-content: space-between;
   .post_search {
