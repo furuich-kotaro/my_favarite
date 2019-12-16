@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users, only: [:show] do
     member do
-      get 'search', to: 'users#search'
+      get 'search',        to: 'users#search'
+      put 'follow',        to: 'users#follow'
+      put 'unfollow',      to: 'users#unfollow'
+      get 'follow_list',   to: 'users#follow_list'
+      get 'follower_list', to: 'users#follower_list'
     end
   end
   resources :posts, except: [:show, :edit, :update] do
