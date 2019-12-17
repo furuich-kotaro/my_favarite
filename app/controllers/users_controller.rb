@@ -3,15 +3,18 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show, :search]
 
   def show
-    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
+    @posts = Post.where(user_id: params[:id]).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
     @user = User.find(params[:id]) if @posts.empty?
+    create_google_map_marker
   end
 
   def search
     @q = Post.search(search_params)
-    @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
+    @user = User.find(params[:id]) if @posts.empty?
     @like = Like.new
+    create_google_map_marker
   end
 
   def follow

@@ -14,6 +14,8 @@
           = sort_link(@q, :created_at, "投稿順")
         span.sort-likes
           = sort_link(@q, :likes_count, "人気順")
+    #map style="width: 100%; height: 35rem;"
+    br
     .row.posts
       = render  "shard/index", { posts: @posts }
     = paginate @posts
@@ -21,3 +23,13 @@
     .user-show-info
       = "#{@user.name}さんの投稿はまだありません"
       = render 'users/follow', { user: @user}
+
+javascript:
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(#{raw @hash.to_json});
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setCenter(new google.maps.LatLng(35.681298, 139.7640582));
+    handler.getMap().setZoom(4);
+  });
