@@ -1,17 +1,56 @@
 .follow_user {
   display: flex;
   justify-content: space-between;
-  .follow_user-link {
-    display: flex;
-    .follow_user-image {
-      width: 3rem;
+  &__left {
+    .follow_user-link {
       height: 3rem;
-      border-radius: 50%;
+      display: flex;
+      align-content: center;
+      .follow_user-image {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+        border-radius: 50%;
+      }
+      .follow_user-name {
+        font-size: 1.5rem;
+        text-align: 3rem;
+        margin-bottom: 0;
+      }
     }
-    .follow_user-name {
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    &__posts-count {
       height: 100%;
-      margin-left: 0.5rem;
-      margin-bottom: 0;
+      flex-direction: column;
+      padding: 0 1rem;
+      border-left: solid 1px rgba(0, 0, 0, 0.125);
+      border-right: solid 1px rgba(0, 0, 0, 0.125);
+      &__top {
+        margin-bottom: 0;
+      }
+      &__bottom {
+        margin-bottom: 0;
+        text-align: center;
+      }
+    }
+    &__info {
+      height: 100%;
+      flex-direction: column;
+      padding: 0 1rem;
+      border-right: solid 1px rgba(0, 0, 0, 0.125);
+      &__follow {
+        display: block;
+      }
+      &__follower {
+        display: block;
+      }
+    }
+    .folow {
+      margin: auto 0;
+      padding-left: 1rem;
     }
   }
 }
