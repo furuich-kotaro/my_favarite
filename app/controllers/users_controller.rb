@@ -20,9 +20,13 @@ class UsersController < ApplicationController
     current_user.stop_following(@user)
   end
 
-  def follow_list; end
+  def follow_list
+    @follow_list = @user.all_following
+  end
 
-  def follower_list; end
+  def follower_list
+    @follower_list = @user.followers
+  end
 
   private
 

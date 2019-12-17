@@ -1,0 +1,17 @@
+.follow_user {
+  display: flex;
+  justify-content: space-between;
+  .follow_user-link {
+    display: flex;
+    .follow_user-image {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+    .follow_user-name {
+      height: 100%;
+      margin-left: 0.5rem;
+      margin-bottom: 0;
+    }
+  }
+}
