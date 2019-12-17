@@ -1,8 +1,19 @@
 ul.list-group.ist-group-flush
   - users.each do |user|
     li.list-group-item.follow_user
-      = link_to user_path(user), class: "follow_user-link" do
-        = image_tag user.image.url, class: "follow_user-image"
-        p.follow_user-name
-          = user.name
-      = render 'follow', { user: user}
+      .follow_user__left
+        = link_to user_path(user), class: "follow_user-link" do
+          = image_tag user.image.url, class: "follow_user-image"
+          p.follow_user-name
+            = user.name
+      .follow_user__right
+        .follow_user__right__posts-count
+          p.follow_user__right__posts-count__top
+            |
+              投稿数
+          p.follow_user__right__posts-count__bottom
+            = user.posts.count
+        .follow_user__right__info
+          = link_to "#{user.follow_count}フォロー", follow_list_user_path(user), class: "follow_user__right__info__follow"
+          = link_to "#{user.followers_count}フォロワー", follower_list_user_path(user), class: "follow_user__right__info__follower"
+        = render 'follow', { user: user}
