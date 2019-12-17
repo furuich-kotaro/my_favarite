@@ -6,7 +6,6 @@ RSpec.describe "Users", type: :system do
   before do
     create(:post, user: user)
     create(:post, user: other_user)
-    driven_by(:rack_test)
   end
 
   describe 'show' do
@@ -16,7 +15,7 @@ RSpec.describe "Users", type: :system do
 
       expect(page).to have_link("first")
       expect(page).to have_link("second")
-      
+
       click_link 'first', match: :first
       expect(page).to have_link("first")
       expect(page).not_to have_link("second")
@@ -47,6 +46,52 @@ RSpec.describe "Users", type: :system do
       expect(page).not_to have_link("second")
       expect(page).to have_content '河口湖'
       expect(page).not_to have_content '東京'
+    end
+  end
+
+  describe 'follow', js: true, retry: 5 do
+    scenario 'ログイン済ユーザはフォローできる' do
+      sign_in user
+      visit user_path(other_user)
+      expect(page).to have_link('フォロー')
+      expect {
+        click_link 'フォロー'
+        wait_for_ajax
+      }.to change{ Follow.count }.by(1)
+    end
+
+    scenario '非ログインユーザはフォローできない' do
+      visit user_path(other_user)
+      expect(page).not_to have_link('フォロー')
+    end
+  end
+
+  describe 'unfollow', js: true, retry: 5 do
+    scenario 'ログイン済ユーザはフォロー解除できる' do
+      sign_in user
+      visit user_path(other_user)
+      expect(page).to have_link('フォロー')
+      click_link 'フォロー'
+      wait_for_ajax
+      expect(page).to have_link('フォロー中')
+      expect {
+        click_link 'フォロー中'
+        wait_for_ajax
+      }.to change{ Follow.count }.by(-1)
+    end
+
+    scenario '非ログインユーザはフォロー解除できない' do
+      sign_in user
+      visit user_path(other_user)
+      expect(page).to have_link('フォロー')
+      click_link 'フォロー'
+      wait_for_ajax
+      expect(page).to have_link('フォロー中')
+      click_link 'アカウント'
+      wait_for_ajax
+      click_link 'ログアウト'
+      visit user_path(other_user)
+      expect(page).not_to have_link('フォロー中')
     end
   end
 end
