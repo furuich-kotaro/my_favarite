@@ -216,3 +216,23 @@ end
     user_id: i + 1
   )
 end
+
+25.times do |i|
+  Follow.create!(
+    followable_type: 'User',
+    followable_id: 1,
+    follower_type: 'User',
+    follower_id: 2 + i,
+    blocked: false
+  )
+end
+
+20.times do |i|
+  Follow.create!(
+    followable_type: 'User',
+    followable_id: 2 + i,
+    follower_type: 'User',
+    follower_id: 1,
+    blocked: false
+  )
+end

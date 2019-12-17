@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, expect: [:show, :search]
+  before_action :authenticate_user!, expect: [:show, :search]
 
   def show
     @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
