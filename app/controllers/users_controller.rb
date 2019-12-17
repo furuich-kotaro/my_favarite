@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, expect: [:show, :search]
-  before_action :authenticate_user!, expect: [:show, :search]
+  before_action :set_user, except: [:show, :search]
+  before_action :authenticate_user!, except: [:show, :search]
 
   def show
     @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def search
     @q = Post.search(search_params)
-    @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
+    @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
   end
 
