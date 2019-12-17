@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
   def set_racsack
     @q = Post.ransack(params[:q])
   end
+
+  def create_google_map_marker
+    @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.address
+      marker.infowindow render_to_string(partial: 'shard/infowindow', locals: { post: post })
+    end
+  end
 end

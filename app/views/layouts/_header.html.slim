@@ -8,6 +8,7 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
         .dropdown-menu
           = link_to "#{current_user.follow_count}フォロー", follow_list_user_path(current_user), class: "dropdown-item"
           = link_to "#{current_user.followers_count}フォロワー", follower_list_user_path(current_user), class: "dropdown-item"
+          = link_to "いいねした投稿", likes_list_user_path(current_user), class: "dropdown-item"
           = link_to "ユーザ情報編集", edit_user_registration_path, class: "dropdown-item"
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
       li.nav-item
