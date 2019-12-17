@@ -49,4 +49,5 @@ https://myfavariteplace.work
 - 投稿管理機能
 - ページネーション機能（Kaminari）
 - いいね機能
+- フォロー機能
 - 検索機能（Ransack）
