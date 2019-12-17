@@ -191,7 +191,7 @@ Post.create(
 
 30.times do |i|
   Like.create!(
-    post_id: 1,
+    post_id: 9,
     user_id: i + 1
   )
 end
