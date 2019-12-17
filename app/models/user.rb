@@ -28,6 +28,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   mount_uploader :image, ImageUploader
+  acts_as_followable
+  acts_as_follower
+
   validates :name, presence: true, length: { maximum: 10 }
 
   def already_liked?(post)

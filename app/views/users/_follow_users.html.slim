@@ -1,0 +1,8 @@
+ul.list-group.ist-group-flush
+  - users.each do |user|
+    li.list-group-item.follow_user
+      = link_to user_path(user), class: "follow_user-link" do
+        = image_tag user.image.url, class: "follow_user-image"
+        p.follow_user-name
+          = user.name
+      = render 'follow', { user: user}
