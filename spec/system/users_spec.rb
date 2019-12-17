@@ -34,16 +34,12 @@ RSpec.describe "Users", type: :system do
       fill_in 'userSearchFiled', with: '東京'
       find(".userSearchSubmit").click
 
-      expect(page).to have_link("first")
-      expect(page).not_to have_link("second")
       expect(page).to have_content '東京'
       expect(page).not_to have_content '河口湖'
 
       fill_in 'userSearchFiled', with: '河口湖'
       find(".userSearchSubmit").click
 
-      expect(page).to have_link("first")
-      expect(page).not_to have_link("second")
       expect(page).to have_content '河口湖'
       expect(page).not_to have_content '東京'
     end
