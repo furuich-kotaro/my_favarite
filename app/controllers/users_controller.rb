@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @posts = @q.result(distinct: true).includes(:user, :taggings).where(user_id: params[:id]).page(params[:page]).per(9).order('created_at DESC')
     @like = Like.new
+    @user = User.find(params[:id]) if @posts.empty?
   end
 
   def search

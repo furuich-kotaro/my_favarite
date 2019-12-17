@@ -1,18 +1,23 @@
 .conteiner.col-10.mx-auto
   #alert-message
-  .user-show-info
-    = "#{@posts.first.user.name}さんの投稿一覧"
-    = render 'users/follow', { user: @posts.first.user}
-  .user-show-menu
-    .user-search-area
-      = search_form_for(@q, url:search_user_path(@posts.first.user.id)) do |f|
-        = f.search_field :address_cont, class: "form-control", id: 'userSearchFiled', placeholder: "キーワード検索"
-        = f.submit class: "btn btn-outline-success my-2 my-sm-0 userSearchSubmit"
-    .sorts
-      span.sort-time
-        = sort_link(@q, :created_at, "投稿順")
-      span.sort-likes
-        = sort_link(@q, :likes_count, "人気順")
-  .row.posts
-    = render  "shard/index", { posts: @posts }
-  = paginate @posts
+  - if @posts.present?
+    .user-show-info
+      = "#{@posts.first.user.name}さんの投稿一覧"
+      = render 'users/follow', { user: @posts.first.user}
+    .user-show-menu
+      .user-search-area
+        = search_form_for(@q, url:search_user_path(@posts.first.user.id)) do |f|
+          = f.search_field :address_cont, class: "form-control", id: 'userSearchFiled', placeholder: "キーワード検索"
+          = f.submit class: "btn btn-outline-success my-2 my-sm-0 userSearchSubmit"
+      .sorts
+        span.sort-time
+          = sort_link(@q, :created_at, "投稿順")
+        span.sort-likes
+          = sort_link(@q, :likes_count, "人気順")
+    .row.posts
+      = render  "shard/index", { posts: @posts }
+    = paginate @posts
+  - else
+    .user-show-info
+      = "#{@user.name}さんの投稿はまだありません"
+      = render 'users/follow', { user: @user}
