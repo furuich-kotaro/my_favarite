@@ -1,8 +1,7 @@
 .conteiner.col-10.mx-auto
   #alert-message
   .user-show-info
-    = "#{current_user.name}さんのがいいねした投稿"
-    = link_to "いいね一覧へ戻る", likes_list_user_path(current_user), class: "likes-link-back"
+    = link_to "#{current_user.name}さんのがいいねした投稿", likes_list_user_path(current_user), class: "likes-link-back"
   .user-show-menu
     .user-search-area
       = search_form_for(@q, url:likes_list_search_user_path(current_user)) do |f|
