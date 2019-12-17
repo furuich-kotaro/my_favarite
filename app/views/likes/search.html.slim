@@ -2,6 +2,7 @@
   #alert-message
   .user-show-info
     = "#{current_user.name}さんのがいいねした投稿"
+    = link_to "いいね一覧へ戻る", likes_list_user_path(current_user), class: "likes-link-back"
   .user-show-menu
     .user-search-area
       = search_form_for(@q, url:likes_list_search_user_path(current_user)) do |f|
@@ -12,6 +13,18 @@
         = sort_link(@q, :created_at, "投稿順")
       span.sort-likes
         = sort_link(@q, :likes_count, "人気順")
+  #map style="width: 100%; height: 35rem;"
+  br
   .row.posts
     = render  "shard/index", { posts: @posts }
     = paginate @posts
+
+javascript:
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(#{raw @hash.to_json});
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setCenter(new google.maps.LatLng(35.681298, 139.7640582));
+    handler.getMap().setZoom(4);
+  });
