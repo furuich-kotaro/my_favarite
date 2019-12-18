@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:create, :destroy]
+  before_action :set_post, only: %i[create destroy]
 
   def index
     likes = Like.where(user_id: params[:id]).pluck(:post_id)
@@ -11,6 +11,7 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.create(post_id: params[:post_id])
+    @post.create_notification_like!(current_user)
   end
 
   def destroy
