@@ -23,4 +23,5 @@ Rails.application.routes.draw do
       get 'search', to: 'maps#search'
     end
   end
+  patch 'notifications', to: 'notifications#update'
 end
