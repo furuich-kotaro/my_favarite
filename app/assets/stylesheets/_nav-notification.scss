@@ -1,0 +1,54 @@
+.notifications {
+  position: fixed;
+  top: 4rem;
+  left: 4rem;
+  display: none;
+  z-index: 10;
+  width: 35rem;
+  background-color: beige;
+  list-style: none;
+  &__header {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.125);
+    &__text {
+      font-size: 1rem;
+      line-height: 3rem;
+      margin: auto;
+    }
+    .close-notifications {
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+  }
+  .checked-false {
+    background-color: bisque;
+  }
+  &__lists {
+    height: 20rem;
+    overflow: auto;
+    &__list {
+      height: 4rem;
+      display: flex;
+      justify-content: space-between;
+      border-top: solid 1px rgba(0, 0, 0, 0.125);
+      &__left {
+        line-height: 4rem;
+        margin-left: 1rem;
+      }
+      &__right {
+        line-height: 4rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__footer {
+    height: 3rem;
+    text-align: center;
+    border-top: solid 1px rgba(0, 0, 0, 0.125);
+    &__link {
+      line-height: 3rem;
+    }
+  }
+}

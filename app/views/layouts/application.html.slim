@@ -10,6 +10,5 @@ html
     script [src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:map_api_key]}" async defer]
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
   body
-  = render 'layouts/devise_notices'
   = render 'layouts/header'
   = yield
