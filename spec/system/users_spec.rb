@@ -56,6 +56,33 @@ RSpec.describe "Users", type: :system do
       }.to change{ Follow.count }.by(1)
     end
 
+    scenario 'ログイン済ユーザはフォローできる/通知も作成される' do
+      sign_in user
+      visit user_path(other_user)
+      expect(page).to have_link('フォロー')
+      expect {
+        click_link 'フォロー'
+        wait_for_ajax
+      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
+    end
+
+    scenario 'フォローを取り消した後にもう一度フォローしても通知は作成されない' do
+      sign_in user
+      visit user_path(other_user)
+      expect(page).to have_link('フォロー')
+            expect {
+        click_link 'フォロー'
+        wait_for_ajax
+      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
+
+      click_link 'フォロー中'
+      wait_for_ajax
+      expect {
+        click_link 'フォロー'
+        wait_for_ajax
+      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(0)
+    end
+
     scenario '非ログインユーザはフォローできない' do
       visit user_path(other_user)
       expect(page).not_to have_link('フォロー')
