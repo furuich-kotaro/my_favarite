@@ -1,0 +1,22 @@
+.conteiner.col-sm-10.col-lg-6.mx-auto
+  #alert-message
+  ul.notifications-index
+    .notifications-index__header
+      = link_to user_path(current_user), class: "notifications-index__header__text" do
+        = "#{current_user.name}さんへの通知"
+    .notifications-index__lists
+      - @notifications_list.each do |notification|
+        li.notifications-index__lists__list
+          .notifications-index__lists__list__left
+            = link_to user_path(notification.visitor) do
+              strong
+                = notification.visitor.name
+            = 'さんが'
+            - case notification.action
+            - when 'follow' then
+              = "あなたをフォローしました"
+            - when 'like' then
+              = render 'notification_modal', { post: notification.post}
+          .notifications-index__lists__list__right
+            = notification.created_at
+  = paginate @notifications_list
