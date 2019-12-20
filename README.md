@@ -35,7 +35,7 @@ https://myfavariteplace.work
 - CircleCI と Capistrano を用いた CI/CD 機能
 - Rspec による自動テスト機能
 - ユーザー登録・ログイン機能（devise を使用）
-- 投稿機能（画像のアップロードに CarrierWave を使用）
+- 投稿機能(画像のアップロードに CarrierWave を使用)
 - 位置情報投稿機能(Google Maps API/Geocoding API)
 - 投稿一覧・投稿詳細表示機能
 - タグ機能(acts-as-taggable-on)
@@ -43,7 +43,8 @@ https://myfavariteplace.work
 - ページネーション機能（Kaminari）
 - いいね機能
 - フォロー機能
-- 検索機能（Ransack）
+- 検索機能(Ransack)
+- 通知機能(初回のいいね、フォロー)
 
 #### アーキテクチャ図
 
@@ -53,4 +54,4 @@ https://myfavariteplace.work
 
 <img width="1453" alt="スクリーンショット 2019-12-15 23 47 29" src="https://user-images.githubusercontent.com/54981611/70864463-68610b80-1f95-11ea-9b7f-d808e4efc958.png">
 <img width="800" alt="スクリーンショット 2019-12-12 15 32 53" src="https://user-images.githubusercontent.com/54981611/70688482-42b5d700-1cf5-11ea-9edc-8006db0e236b.png">
-<img width="800" alt="スクリーンショット 2019-12-12 15 33 10" src="https://user-images.githubusercontent.com/54981611/70688488-45b0c780-1cf5-11ea-99c0-d2a6c9605976.png">
+<img width="783" alt="スクリーンショット 2019-12-20 23 38 25" src="https://user-images.githubusercontent.com/54981611/71261913-e2bcd180-2381-11ea-88d0-5040c363a5eb.png">
