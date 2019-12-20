@@ -1,0 +1,71 @@
+span.notification_modal-link.text-primary[ data-toggle="modal" data-target="#demoNormalModal#{post.id}"]
+  = "「#{post.address.truncate(8)}」"
+span にいいねしました
+.modal.fade[tabindex="-1" id="demoNormalModal#{post.id}" role="dialog" aria-labelledby="modal" aria-hidden="true"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header.modal-header-notification
+        .modal-header__left.modal-header-notification__left
+          = image_tag post.user.image.url, class: "modal-user-image-notification"
+          span.modal-user-name-notification
+            = link_to post.user.name, user_path(post.user.id), class: "user-link-notification"
+        .modal-header__right.modal-header-notification__right
+          #demoModalTitle.modal-title.modal-title-notification
+            = post.address
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+      .modal-body.modal-body-notifcation
+        .modal-body__pictures.modal-body-notifcation__pictures
+          - if post.pictures.length >= 2
+            .carousel.slide[id="carouselExampleControls1#{post.id}" data-interval="false"]
+              .carousel-inner
+                - post.pictures.length.times do |i|
+                  - if i == 0
+                    .carousel-item.active[data-interval="false"]
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+                  - else
+                    .carousel-item[data-interval="false"]
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+              a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
+                span.carousel-control-prev-icon[aria-hidden="true"]
+                span.sr-only
+                  | Previous
+              a.carousel-control-next[href="#carouselExampleControls1#{post.id}" role="button" data-slide="next"]
+                span.carousel-control-next-icon[aria-hidden="true"]
+                span.sr-only
+                  | Next
+          - else
+            = image_tag post.pictures[0].url, class: 'modal-img-top', style: "height: 400px;"
+        - if post.description.present?
+          h5
+            |
+              お気に入りポイント
+          .post-description-notification
+            = safe_join(post.description.split("\n"), tag(:br))
+        .modal-body-notifcation__menu
+          - if user_signed_in? && ( post.user.id == current_user.id )
+            = link_to "削除", post_path(post.id), method: :delete, remote: true, class: "btn btn-primary remove-card-notification", data: {post: post.id}
+            div(class="likes-#{post.id} like")
+              i.far.fa-heart.gray_heart
+              = post.likes.count
+          - elsif user_signed_in? && ( post.user.id != current_user.id )
+            div(class="likes-#{post.id} like")
+              = render 'likes/like', { post: post}
+          - else
+            div(class="likes-#{post.id} like")
+              i.far.fa-heart.gray_heart
+              = post.likes.count
+        - if post.tag_list.present?
+          - post.tag_list.each do |tag|
+            = link_to tag, posts_path(tag_name: tag), class: "modal-tag badge badge-secondary"
+      .modal-footer.modal-footer-notification
+        = link_to "googleマップで開く" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank", class: "likn-gopglemap"
+        button.btn.btn-secondary[type="button" data-dismiss="modal"]
+          | 閉じる
+
+javascript:
+  history.replaceState(null, document.getElementsByTagName('title')[0].innerHTML, null);
+  window.addEventListener('popstate', function(e) {
+    window.location.reload();
+  });

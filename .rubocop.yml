@@ -1,8 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
-require:
-  - rubocop-rails
-
 AllCops:
   TargetRubyVersion: 2.6
   Exclude:
@@ -24,6 +19,9 @@ AllCops:
     - config/deploy/production.rb
     - config/application.rb
     - config/environments/development.rb
+
+Rails:
+  Enabled: true
 
 # 日本語でのコメントを許可
 AsciiComments:

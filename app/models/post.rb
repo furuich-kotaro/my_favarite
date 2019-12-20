@@ -25,6 +25,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :notifications, dependent: :destroy
   mount_uploaders :pictures, PictureUploader
   geocoded_by :address
   after_validation :geocode
@@ -41,5 +42,17 @@ class Post < ApplicationRecord
   ransacker :likes_count do
     query = '(SELECT COUNT(likes.post_id) FROM likes where likes.post_id = posts.id GROUP BY likes.post_id)'
     Arel.sql(query)
+  end
+
+  def create_notification_like!(current_user)
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like'])
+    return if temp.present?
+
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      visited_id: user_id,
+      action: 'like'
+    )
+    notification.save if notification.valid?
   end
 end

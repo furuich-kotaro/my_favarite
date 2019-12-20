@@ -11,10 +11,10 @@ gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'bootstrap', '~> 4.3.1'
-gem 'sassc-rails', '>= 2.1.0'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'font-awesome-sass'
+gem 'sassc-rails', '>= 2.1.0'
 gem 'slim-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -35,69 +35,69 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'acts-as-taggable-on'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'rails-i18n'
+gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'carrierwave'
-gem 'fog-aws'
-gem 'faker'
-gem 'mini_magick'
 gem 'dotenv-rails'
-gem 'pry-rails'
-gem "gmaps4rails"
-gem "geocoder"
+gem 'faker'
+gem 'fog-aws'
+gem 'geocoder'
+gem 'gmaps4rails'
 gem 'kaminari'
-gem 'acts-as-taggable-on'
+gem 'mini_magick'
+gem 'pry-rails'
+gem 'rails-i18n'
 gem 'ransack'
-gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bullet'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'rspec-retry'
-  gem 'factory_bot_rails'
-  gem "rspec_junit_formatter"
-  gem 'bullet'
-  gem 'capistrano'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano3-unicorn'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring-commands-rspec'
+  gem 'annotate'
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'html2slim'
-  gem "pre-commit", require: false
+  gem 'pre-commit', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'solargraph'
-  gem 'annotate'
-  gem 'awesome_print'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem 'capybara-email'
-  gem 'launchy'
   gem 'email_spec'
-  gem 'webdrivers'
+  gem 'launchy'
   gem 'shoulda-matchers',
       git: 'https://github.com/thoughtbot/shoulda-matchers.git',
       branch: 'rails-5'
+  gem 'webdrivers'
 end
 
 group :production do
@@ -105,4 +105,4 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

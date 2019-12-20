@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, except: [:show, :search]
-  before_action :authenticate_user!, except: [:show, :search]
+  before_action :set_user, except: %i[show search]
+  before_action :authenticate_user!, except: %i[show search]
 
   def show
     @posts = Post.where(user_id: params[:id]).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow(@user)
+    @user.create_notification_follow!(current_user)
   end
 
   def unfollow

@@ -189,17 +189,38 @@ Post.create(
   user_id: 7
 )
 
-30.times do |i|
+29.times do |i|
   Like.create!(
-    post_id: 9,
-    user_id: i + 1
+    post_id: 1,
+    user_id: i + 2
   )
 end
+
+29.times do |i|
+  Notification.create(
+    visitor_id: i + 2,
+    visited_id: 1,
+    post_id: 1,
+    action: "like",
+    checked: false
+  )
+end
+
 
 25.times do |i|
   Like.create!(
     post_id: 4,
     user_id: i + 1
+  )
+end
+
+25.times do |i|
+  Notification.create(
+    visitor_id: i + 1,
+    visited_id: 2,
+    post_id: 4,
+    action: "like",
+    checked: false
   )
 end
 
@@ -210,10 +231,30 @@ end
   )
 end
 
+20.times do |i|
+  Notification.create(
+    visitor_id: i + 1,
+    visited_id: 4,
+    post_id: 7,
+    action: "like",
+    checked: false
+  )
+end
+
 15.times do |i|
   Like.create!(
     post_id: 10,
     user_id: i + 1
+  )
+end
+
+15.times do |i|
+  Notification.create(
+    visitor_id: i + 1,
+    visited_id: 5,
+    post_id: 10,
+    action: "like",
+    checked: false
   )
 end
 
@@ -227,6 +268,15 @@ end
   )
 end
 
+25.times do |i|
+  Notification.create(
+    visitor_id: 2 + i,
+    visited_id: 1,
+    action: "follow",
+    checked: false
+  )
+end
+
 20.times do |i|
   Follow.create!(
     followable_type: 'User',
@@ -234,5 +284,14 @@ end
     follower_type: 'User',
     follower_id: 1,
     blocked: false
+  )
+end
+
+20.times do |i|
+  Notification.create(
+    visitor_id: 1,
+    visited_id: 2 + i,
+    action: "follow",
+    checked: false
   )
 end

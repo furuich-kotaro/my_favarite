@@ -1,0 +1,91 @@
+.notifications-index {
+  list-style: none;
+  &__header {
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    &__text {
+      font-size: 1rem;
+      line-height: 3rem;
+    }
+    .close-notifications {
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+  }
+  &__lists {
+    border: solid 1px rgba(0, 0, 0, 0.125);
+    &__list {
+      height: 4rem;
+      display: flex;
+      justify-content: space-between;
+      border-top: solid 1px rgba(0, 0, 0, 0.125);
+      &__left {
+        line-height: 4rem;
+        margin-left: 1rem;
+      }
+      &__right {
+        line-height: 4rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+.modal-header-notification {
+  height: 5rem;
+  &__left {
+    display: flex;
+    margin-left: 1rem;
+    .modal-user-name-notification {
+      height: 3rem;
+      line-height: 3rem;
+      font-size: 1.5rem;
+      margin-left: 0.5rem;
+      .user-link-notification {
+        margin-bottom: -1rem;
+      }
+    }
+    .modal-user-image-notification {
+      display: block;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
+      margin: 0;
+    }
+  }
+  &__right {
+    margin: auto;
+    .modal-title-notification {
+      width: 13rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+  }
+}
+
+.modal-body-notifcation {
+  &__pictures {
+    padding-bottom: 1rem;
+  }
+  &__menu {
+    height: 3rem;
+    margin-top: 0.5rem;
+    display: flex;
+    margin-top: -1rem;
+    .remove-card-notification {
+      height: 2.3rem;
+      margin-top: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+  .post-description-notification {
+    margin: -1rem 0 0 0.5rem;
+  }
+  .modal-tag {
+    margin-right: 0.5rem;
+  }
+}
+
+.modal-footer-notification {
+  padding: 0 1rem;
+}

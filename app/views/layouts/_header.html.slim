@@ -1,4 +1,4 @@
-nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
+nav.navbar.navbar-light.bg-light.sticky-top style="background-color: #e3f2fd;"
   ul.nav.nav-tabs
     - if signed_in?
       li.nav-item.dropdow
@@ -11,6 +11,11 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
           = link_to "いいねした投稿", likes_list_user_path(current_user), class: "dropdown-item"
           = link_to "ユーザ情報編集", edit_user_registration_path, class: "dropdown-item"
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
+      li.nav-item
+        = link_to notifications_path, class: "nav-link active open-notifications", method: :patch, remote: true do
+          span 通知
+          - if @notifications.where(checked: false).present?
+            i.fas.fa-bell
       li.nav-item
         = link_to "場所一覧", maps_path, class: "nav-link active"
       li.nav-item
@@ -38,3 +43,44 @@ nav.navbar.navbar-light.bg-light style="background-color: #e3f2fd;"
           = f.search_field :address_cont, class: "form-control mr-sm-2", id: 'searchFiled', placeholder: "キーワード検索"
           = f.submit class: "btn btn-outline-success my-2 my-sm-0"
   = link_to "PleAPP", root_path, class: "navbar-brand"
+- if signed_in?
+  ul.notifications
+    .notifications__header
+      = link_to user_path(current_user), class: "notifications__header__text" do
+        = "#{current_user.name}さんへの通知"
+      .close-notifications
+        i.fas.fa-window-close
+    .notifications__lists
+      - @notifications.each do |notification|
+        - if notification.checked == true
+          li.notifications__lists__list
+            .notifications__lists__list__left
+              = link_to user_path(notification.visitor) do
+                strong
+                  = notification.visitor.name
+              = 'さんが'
+              - case notification.action
+              - when 'follow' then
+                = "あなたをフォローしました"
+              - when 'like' then
+                = "「#{notification.post.address.truncate(8)}」にいいねしました"
+            .notifications__lists__list__right
+              = notification.created_at
+        - else
+          li.notifications__lists__list.checked-false
+            .notifications__lists__list__left
+              = link_to user_path(notification.visitor) do
+                i.fas.fa-bell
+                strong
+                  = notification.visitor.name
+              = 'さんが'
+              - case notification.action
+              - when 'follow' then
+                = "あなたをフォローしました"
+              - when 'like' then
+                = "「#{notification.post.address.truncate(8)}」にいいねしました"
+            .notifications__lists__list__right
+              = notification.created_at
+    .notifications__footer
+      = link_to notifications_path, class: "notifications__footer__link" do
+        | 通知一覧

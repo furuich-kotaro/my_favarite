@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: %i[new create destroy]
 
   def index
     @posts = @q.result(distinct: true).includes(:user, :taggings).page(params[:page]).per(9).order('created_at DESC')

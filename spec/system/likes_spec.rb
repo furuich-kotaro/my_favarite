@@ -32,6 +32,32 @@ RSpec.describe "Likes", type: :system  do
       }.to change{ post.likes.count }.by(1)
     end
 
+    scenario 'ログイン済みユーザ/他人の投稿にはいいねできる/通知も作成される', js: true, retry: 5 do
+      post = create(:post, user: user)
+      sign_in other_user
+      visit root_path
+      expect {
+        first('.likes-link-create').click
+        wait_for_ajax
+      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+    end
+
+    scenario 'いいねを取り消した後にもう一度良いねしても通知は作成されない', js: true, retry: 5 do
+      post = create(:post, user: user)
+      sign_in other_user
+      visit root_path
+      expect {
+        first('.likes-link-create').click
+        wait_for_ajax
+      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+      first('.likes-link-delete').click
+      wait_for_ajax
+      expect {
+        first('.likes-link-create').click
+        wait_for_ajax
+      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(0)
+    end
+
     scenario 'ログイン済みユーザ/投稿者自身の投稿にはいいねできない' do
       post = create(:post, user: user)
       sign_in user

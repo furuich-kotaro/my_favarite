@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       get 'likes/list/search', to: 'likes#search'
     end
   end
-  resources :posts, except: [:show, :edit, :update] do
-    resources :likes, only: [:create, :destroy]
+  resources :posts, except: %i[show edit update] do
+    resources :likes, only: %i[create destroy]
     collection do
       get 'search', to: 'posts#search'
     end
@@ -23,4 +23,6 @@ Rails.application.routes.draw do
       get 'search', to: 'maps#search'
     end
   end
+  get   'notifications', to: 'notifications#index'
+  patch 'notifications', to: 'notifications#update'
 end
