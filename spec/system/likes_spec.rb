@@ -21,46 +21,42 @@ RSpec.describe "Likes", type: :system  do
 
   describe 'create', js: true, retry: 5 do
     context 'ログイン済み' do
-      scenario '他人の投稿にはいいねできる' do
+      before do
         post = create(:post, user: user)
         sign_in other_user
         visit root_path
+      end
+
+      scenario '他人の投稿にはいいねできる' do
         expect(page).to have_css('.likes-link-create')
         expect(page).not_to have_css('.likes-link-delete')
         expect {
           first('.likes-link-create').click
           wait_for_ajax
-        }.to change{ post.likes.count }.by(1)
+        }.to change{ Like.count }.by(1)
       end
 
       scenario '他人の投稿にはいいねできる/通知も作成される' do
-        post = create(:post, user: user)
-        sign_in other_user
-        visit root_path
         expect {
           first('.likes-link-create').click
           wait_for_ajax
-        }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(1)
       end
 
       scenario 'いいねを取り消した後にもう一度良いねしても通知は作成されない' do
-        post = create(:post, user: user)
-        sign_in other_user
-        visit root_path
         expect {
           first('.likes-link-create').click
           wait_for_ajax
-        }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(1)
         first('.likes-link-delete').click
         wait_for_ajax
         expect {
           first('.likes-link-create').click
           wait_for_ajax
-        }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(0)
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(0)
       end
 
       scenario 'いいねされると通知が来る' do
-        post = create(:post, user: user)
         sign_in user
         visit root_path
         expect(page).not_to have_css('.fa-bell')
@@ -77,7 +73,6 @@ RSpec.describe "Likes", type: :system  do
       end
 
       scenario '投稿者自身の投稿にはいいねできない' do
-        post = create(:post, user: user)
         sign_in user
         visit root_path
         expect(page).not_to have_css('.likes-link-create')
