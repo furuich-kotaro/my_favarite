@@ -23,7 +23,6 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'search' do
-
     scenario '特定のユーザの投稿を検索' do
       create(:post_kawaguchiko, user: user)
       sign_in user
@@ -46,53 +45,73 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'follow', js: true, retry: 5 do
-    scenario 'ログイン済ユーザはフォローできる' do
-      sign_in user
-      visit user_path(other_user)
-      expect(page).to have_link('フォロー')
-      expect {
-        click_link 'フォロー'
+    context 'ログイン済み' do
+      before do
+        sign_in user
+        visit user_path(other_user)
+      end
+
+      scenario 'フォローできる' do
+        expect(page).to have_link('フォロー')
+        expect {
+          click_link 'フォロー'
+          wait_for_ajax
+        }.to change{ Follow.count }.by(1)
+      end
+
+      scenario 'フォローできる/通知も作成される' do
+        expect(page).to have_link('フォロー')
+        expect {
+          click_link 'フォロー'
+          wait_for_ajax
+        }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
+      end
+
+      scenario 'フォローを取り消した後にもう一度フォローしても通知は作成されない' do
+        expect(page).to have_link('フォロー')
+              expect {
+          click_link 'フォロー'
+          wait_for_ajax
+        }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
+
+        click_link 'フォロー中'
         wait_for_ajax
-      }.to change{ Follow.count }.by(1)
+        expect {
+          click_link 'フォロー'
+          wait_for_ajax
+        }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(0)
+      end
+
+      scenario 'フォローされると通知が来る' do
+        expect(page).not_to have_css('.fa-bell')
+        expect(page).not_to have_css('.checked-false')
+
+        sign_in other_user
+        visit user_path(user)
+        click_link 'フォロー'
+
+        sign_in user
+        visit root_path
+        expect(page).to have_css('.fa-bell')
+        expect(page).to have_css('.checked-false',visible: false)
+      end
     end
 
-    scenario 'ログイン済ユーザはフォローできる/通知も作成される' do
-      sign_in user
-      visit user_path(other_user)
-      expect(page).to have_link('フォロー')
-      expect {
-        click_link 'フォロー'
-        wait_for_ajax
-      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
-    end
-
-    scenario 'フォローを取り消した後にもう一度フォローしても通知は作成されない' do
-      sign_in user
-      visit user_path(other_user)
-      expect(page).to have_link('フォロー')
-            expect {
-        click_link 'フォロー'
-        wait_for_ajax
-      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(1)
-
-      click_link 'フォロー中'
-      wait_for_ajax
-      expect {
-        click_link 'フォロー'
-        wait_for_ajax
-      }.to change{ Follow.count }.by(1).and change{ Notification.count }.by(0)
-    end
-
-    scenario '非ログインユーザはフォローできない' do
-      visit user_path(other_user)
-      expect(page).not_to have_link('フォロー')
+    context '非ログイン' do
+      scenario '非ログインユーザはフォローできない' do
+        visit user_path(other_user)
+        expect(page).not_to have_link('フォロー')
+      end
     end
   end
 
   describe 'unfollow', js: true, retry: 5 do
-    scenario 'ログイン済ユーザはフォロー解除できる' do
+    before do
       sign_in user
       visit user_path(other_user)
+    end
+
+    scenario 'ログイン済ユーザはフォロー解除できる' do
       expect(page).to have_link('フォロー')
       click_link 'フォロー'
       wait_for_ajax
@@ -104,8 +123,6 @@ RSpec.describe "Users", type: :system do
     end
 
     scenario '非ログインユーザはフォロー解除できない' do
-      sign_in user
-      visit user_path(other_user)
       expect(page).to have_link('フォロー')
       click_link 'フォロー'
       wait_for_ajax

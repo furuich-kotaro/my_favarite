@@ -19,81 +19,101 @@ RSpec.describe "Likes", type: :system  do
     end
   end
 
-  describe 'create' do
-    scenario 'ログイン済みユーザ/他人の投稿にはいいねできる', js: true, retry: 5  do
-      post = create(:post, user: user)
-      sign_in other_user
-      visit root_path
-      expect(page).to have_css('.likes-link-create')
-      expect(page).not_to have_css('.likes-link-delete')
-      expect {
-        first('.likes-link-create').click
+  describe 'create', js: true, retry: 5 do
+    context 'ログイン済み' do
+      before do
+        post = create(:post, user: user)
+        sign_in other_user
+        visit root_path
+      end
+
+      scenario '他人の投稿にはいいねできる' do
+        expect(page).to have_css('.likes-link-create')
+        expect(page).not_to have_css('.likes-link-delete')
+        expect {
+          first('.likes-link-create').click
+          wait_for_ajax
+        }.to change{ Like.count }.by(1)
+      end
+
+      scenario '他人の投稿にはいいねできる/通知も作成される' do
+        expect {
+          first('.likes-link-create').click
+          wait_for_ajax
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+      end
+
+      scenario 'いいねを取り消した後にもう一度良いねしても通知は作成されない' do
+        expect {
+          first('.likes-link-create').click
+          wait_for_ajax
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(1)
+        first('.likes-link-delete').click
         wait_for_ajax
-      }.to change{ post.likes.count }.by(1)
+        expect {
+          first('.likes-link-create').click
+          wait_for_ajax
+        }.to change{ Like.count }.by(1).and change{ user.passive_notifications.count }.by(0)
+      end
+
+      scenario 'いいねされると通知が来る' do
+        sign_in user
+        visit root_path
+        expect(page).not_to have_css('.fa-bell')
+        expect(page).not_to have_css('.checked-false')
+
+        sign_in other_user
+        visit root_path
+        first('.likes-link-create').click
+
+        sign_in user
+        visit root_path
+        expect(page).to have_css('.fa-bell')
+        expect(page).to have_css('.checked-false',visible: false)
+      end
+
+      scenario '投稿者自身の投稿にはいいねできない' do
+        sign_in user
+        visit root_path
+        expect(page).not_to have_css('.likes-link-create')
+        expect(page).to have_css('.gray_heart')
+      end
     end
 
-    scenario 'ログイン済みユーザ/他人の投稿にはいいねできる/通知も作成される', js: true, retry: 5 do
-      post = create(:post, user: user)
-      sign_in other_user
-      visit root_path
-      expect {
-        first('.likes-link-create').click
-        wait_for_ajax
-      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
-    end
-
-    scenario 'いいねを取り消した後にもう一度良いねしても通知は作成されない', js: true, retry: 5 do
-      post = create(:post, user: user)
-      sign_in other_user
-      visit root_path
-      expect {
-        first('.likes-link-create').click
-        wait_for_ajax
-      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(1)
-      first('.likes-link-delete').click
-      wait_for_ajax
-      expect {
-        first('.likes-link-create').click
-        wait_for_ajax
-      }.to change{ post.likes.count }.by(1).and change{ user.passive_notifications.count }.by(0)
-    end
-
-    scenario 'ログイン済みユーザ/投稿者自身の投稿にはいいねできない' do
-      post = create(:post, user: user)
-      sign_in user
-      visit root_path
-      expect(page).not_to have_css('.likes-link-create')
-      expect(page).to have_css('.gray_heart')
-    end
-
-    scenario '非ログインユーザはいいねできない' do
-      post = create(:post, user: user)
-      visit root_path
-      expect(page).not_to have_css('.likes-link-create')
-      expect(page).to have_css('.gray_heart')
+    context '非ログイン' do
+      scenario 'いいねできない' do
+        post = create(:post, user: user)
+        visit root_path
+        expect(page).not_to have_css('.likes-link-create')
+        expect(page).to have_css('.gray_heart')
+      end
     end
   end
 
-  describe 'destroy' do
-    scenario 'ログイン済みユーザはいいねを削除できる', js: true, retry: 5 do
-      post = create(:post, user: user)
-      create(:like, post: post, user: other_user)
-      sign_in other_user
-      visit root_path
-      expect(page).not_to have_css('.likes-link-create')
-      expect(page).to have_css('.likes-link-delete')
-      expect {
-        first('.likes-link-delete').click
-        wait_for_ajax
-      }.to change{ post.likes.count }.by(-1)
+  describe 'destroy', js: true, retry: 5  do
+    context 'ログイン済み' do
+      scenario 'いいねを削除できる' do
+        post = create(:post, user: user)
+        create(:like, post: post, user: other_user)
+        sign_in other_user
+        visit root_path
+        expect(page).not_to have_css('.likes-link-create')
+        expect(page).to have_css('.likes-link-delete')
+        expect {
+          first('.likes-link-delete').click
+          wait_for_ajax
+        }.to change{ post.likes.count }.by(-1)
+      end
     end
 
-    scenario '非ログインユーザはいいねを削除できない' do
-      post = create(:post, user: user)
-      create(:like, post: post, user: other_user)
-      visit root_path
-      expect(page).not_to have_css('.likes-link-delete')
-      expect(page).to have_css('.gray_heart')
+    context '非ログイン' do
+      scenario 'いいねを削除できない' do
+        post = create(:post, user: user)
+        create(:like, post: post, user: other_user)
+        visit root_path
+        expect(page).not_to have_css('.likes-link-delete')
+        expect(page).to have_css('.gray_heart')
+      end
     end
   end
 

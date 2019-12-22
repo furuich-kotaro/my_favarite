@@ -76,9 +76,11 @@ nav.navbar.navbar-light.bg-light.sticky-top style="background-color: #e3f2fd;"
               = 'さんが'
               - case notification.action
               - when 'follow' then
-                = "あなたをフォローしました"
+                span.follow-notification
+                  = "あなたをフォローしました"
               - when 'like' then
-                = "「#{notification.post.address.truncate(8)}」にいいねしました"
+                span.like-notification
+                  = "「#{notification.post.address.truncate(8)}」にいいねしました"
             .notifications__lists__list__right
               = notification.created_at
     .notifications__footer
