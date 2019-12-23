@@ -1,0 +1,40 @@
+- if signed_in?
+  ul.notifications
+    .notifications__header
+      = link_to user_path(current_user), class: "notifications__header__text" do
+        = "#{current_user.name}さんへの通知"
+      .close-notifications
+        i.fas.fa-window-close
+    .notifications__lists
+      - @notifications.each do |notification|
+        - if notification.checked == true
+          li.notifications__lists__list
+            .notifications__lists__list__left
+              = link_to user_path(notification.visitor) do
+                strong
+                  = notification.visitor.name
+              = 'さんが'
+              - case notification.action
+              - when 'follow' then
+                = "あなたをフォローしました"
+              - when 'like' then
+                = "「#{notification.post.address.truncate(8)}」にいいねしました"
+            .notifications__lists__list__right
+              = notification.created_at
+        - else
+          li.notifications__lists__list.checked-false
+            .notifications__lists__list__left
+              = link_to user_path(notification.visitor) do
+                i.fas.fa-bell
+                strong
+                  = notification.visitor.name
+              = 'さんが'
+              - case notification.action
+              - when 'follow' then
+                span.follow-notification
+                  = "あなたをフォローしました"
+              - when 'like' then
+                span.like-notification
+                  = "「#{notification.post.address.truncate(8)}」にいいねしました"
+            .notifications__lists__list__right
+              = notification.created_at
