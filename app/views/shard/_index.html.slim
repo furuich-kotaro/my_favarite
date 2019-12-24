@@ -6,10 +6,10 @@
         .carousel-inner
           - post.pictures.length.times do |i|
             - if i == 0
-              .carousel-item.active[data-interval="false"]
+              .carousel-item.active[data-interval="false" data-toggle="modal" data-target="#demoNormalModal#{post.id}"]
                 = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top"
             - else
-              .carousel-item[data-interval="false"]
+              .carousel-item[data-interval="false"data-toggle="modal" data-target="#demoNormalModal#{post.id}"]
                 = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top"
         a.carousel-control-prev[href="#carouselExampleControls#{post.id}" role="button" data-slide="prev"]
           span.carousel-control-prev-icon[aria-hidden="true"]
