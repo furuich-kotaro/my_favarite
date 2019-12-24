@@ -33,3 +33,6 @@
 
 # ignore Environment variable
 /.env
+
+# ignore .DS_Store
+.DS_Store
