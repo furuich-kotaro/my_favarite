@@ -22,10 +22,10 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
                 - post.pictures.length.times do |i|
                   - if i == 0
                     .carousel-item.active[data-interval="false"]
-                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 25rem;"
                   - else
                     .carousel-item[data-interval="false"]
-                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 400px;"
+                      = image_tag post.pictures[i].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 25rem;"
               a.carousel-control-prev[href="#carouselExampleControls1#{post.id}" role="button" data-slide="prev"]
                 span.carousel-control-prev-icon[aria-hidden="true"]
                 span.sr-only
@@ -35,7 +35,7 @@ button.btn.btn-sm.btn-primary[type="button" data-toggle="modal" data-target="#de
                 span.sr-only
                   | Next
           - else
-            = image_tag post.pictures[0].url, class: 'modal-img-top', style: "height: 400px;"
+            = image_tag post.pictures[0].url, class: "modal-picture d-block w-100 card-img-top modal-picture-top", style: "height: 25rem;"
         - if post.description.present?
           h5
             |
