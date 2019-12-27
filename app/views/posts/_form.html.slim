@@ -17,7 +17,7 @@
     = f.label :description, "お気に入り、おすすめポイント(50字以内でお願いします)"
     = f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control", id: "postDescription"
   .form-group
-    = f.label :tag_list, "タグ(カンマ区切り)"
+    = f.label :tag_list, "タグ(enter/カンマ区切り)"
     br
     = text_field_tag 'post[tag_list]', post.tag_list.join(','), class: "form-control", id: "postTags", placeholder: "etc)東京,展望台", "data-role": "tagsinput"
   .form-group

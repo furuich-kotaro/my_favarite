@@ -13,7 +13,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require bootstrap-tagsinput
 //= require bootstrap-tagsinput.min
 //= require jquery
 //= require rails-ujs
