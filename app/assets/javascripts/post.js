@@ -36,7 +36,7 @@ $(document).on("turbolinks:load", function() {
             });
           $(".prev").css({
             width: "100%",
-            height: "250px"
+            height: "15.6rem"
           });
         };
         reader.readAsDataURL(input.files[0]);
