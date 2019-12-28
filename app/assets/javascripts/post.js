@@ -44,11 +44,27 @@ $(document).on("turbolinks:load", function() {
       readURL(this);
     });
   });
+  // お気に入りの場所を入力すると自動で存在するか検索
   $("#postAddress").blur(function() {
     var address_value = $("#postAddress").val();
     if (address_value.length !== 0) {
       $("#address-search-form").val(address_value);
       $("#address-search-button").trigger("click");
+    }
+  });
+  // お気に入りポイントで５０文字を超えるとメッセージで知らせる
+  var WordCountValidation = `<p class="ValidationMsg">５０文字を超えています</p>`;
+  $(document).on("input", "#postDescription", function() {
+    var DescriptionWordCount = $("#postDescription").val().length;
+    if (DescriptionWordCount >= 51 && $(".ValidationMsg").length == 0) {
+      $(this)
+        .parent()
+        .append(WordCountValidation);
+      $(".ValidationMsg").css({
+        color: "red"
+      });
+    } else if (DescriptionWordCount <= 50 && $(".ValidationMsg").length == 1) {
+      $(".ValidationMsg").remove();
     }
   });
 });
