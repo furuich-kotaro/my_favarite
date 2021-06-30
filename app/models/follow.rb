@@ -13,10 +13,10 @@
 #
 # Indexes
 #
-#  fk_followables                                      (followable_id,followable_type)
-#  fk_follows                                          (follower_id,follower_type)
-#  index_follows_on_followable_type_and_followable_id  (followable_type,followable_id)
-#  index_follows_on_follower_type_and_follower_id      (follower_type,follower_id)
+#  fk_followables               (followable_id,followable_type)
+#  fk_follows                   (follower_id,follower_type)
+#  index_follows_on_followable  (followable_type,followable_id)
+#  index_follows_on_follower    (follower_type,follower_id)
 #
 
 class Follow < ApplicationRecord
