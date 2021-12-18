@@ -2,37 +2,35 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.0-node-browsers
+      - image: circleci/ruby:3.0.2
         environment:
           RAILS_ENV: test
-          DB_HOST: 127.0.0.1
+          DB_HOST: "127.0.0.1"
           DB_USERNAME: "root"
           DB_PASSWORD: "password"
+          MYSQL_ROOT_PASSWORD: ""
+          MYSQL_DATABASE: "my_favarite_test"
+          MYSQL_HOST: "127.0.0.1"
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
 
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_DATABASE: my_favarite_test
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_ROOT_HOST: "%"
-          MYSQL_USER: root
 
     working_directory: ~/favorite_place
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
@@ -44,6 +42,18 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - restore_cache:
+          key: app-yarn-v3-{{ checksum ".yarnrc.yml" }}-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Yarn のインストール
+          command: yarn install
+
+      - save_cache:
+          key: app-yarn-v3-{{ checksum ".yarnrc.yml" }}-{{ checksum "yarn.lock" }}
+          paths:
+            - .yarn
 
       - run:
           name: Wait for DB
@@ -79,14 +89,14 @@ jobs:
           name: run rubocop
           command: bundle exec rubocop -a
 
-      - add_ssh_keys:
-          fingerprints:
-            - "c8:29:77:e8:99:20:2b:6e:eb:1e:ab:77:ff:b7:37:44"
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "c8:29:77:e8:99:20:2b:6e:eb:1e:ab:77:ff:b7:37:44"
 
-      - deploy:
-          name: Capistrano deploy unicorn:restart
-          command: |
-            if [ "${CIRCLE_BRANCH}" != "master" ]; then
-              exit 0
-            fi
-            bundle exec cap production deploy unicorn:restart
+      # - deploy:
+      #     name: Capistrano deploy unicorn:restart
+      #     command: |
+      #       if [ "${CIRCLE_BRANCH}" != "master" ]; then
+      #         exit 0
+      #       fi
+      #       bundle exec cap production deploy unicorn:restart
